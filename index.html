@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pentru Alexia 💜</title>
+  <title>Pentru Alexia mea 💜</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Parisienne&family=Pinyon+Script&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
@@ -25,70 +25,113 @@
       align-items: center;
       padding: 20px;
     }
-    .initial-screen {
-      text-align: center;
-      z-index: 10;
-      opacity: 1;
-      transition: opacity 1s ease;
-    }
-    .initial-screen.hidden {
-      opacity: 0;
-      pointer-events: none;
-    }
-    .title {
-      font-family: 'Pinyon Script', cursive;
-      font-size: 4rem;
-      color: #e9d5ff;
-      text-shadow: 0 8px 20px rgba(124,58,237,0.9);
-      margin-bottom: 20px;
-      animation: romanticGlow 4s ease-in-out infinite alternate;
-    }
-    @keyframes romanticGlow {
-      from { text-shadow: 0 0 15px #c084fc; transform: scale(1); }
-      to { text-shadow: 0 0 30px #c084fc; transform: scale(1.03); }
-    }
-    #reveal-button {
-      font-size: 1.5rem;
-      padding: 15px 40px;
-      background: linear-gradient(45deg, #d946ef, #a855f7);
-      color: white;
-      border: none;
-      border-radius: 50px;
+    .envelope-container {
+      position: relative;
+      width: 320px;
+      height: 220px;
+      perspective: 1000px;
       cursor: pointer;
-      box-shadow: 0 10px 30px rgba(168,85,247,0.6);
-      transition: transform 0.3s ease;
+      z-index: 10;
     }
-    #reveal-button:hover {
-      transform: scale(1.1);
-    }
-    .card {
-      background: rgba(30, 10, 60, 0.75);
-      backdrop-filter: blur(15px);
-      border-radius: 30px;
-      padding: 40px 30px;
-      max-width: 800px;
+    .envelope {
+      position: absolute;
       width: 100%;
-      max-height: 80vh;
-      overflow-y: auto;
-      opacity: 0;
-      transform: scale(0.9);
-      transition: opacity 1s ease, transform 1s ease;
+      height: 100%;
+      transform-style: preserve-3d;
+      transition: transform 1.2s ease;
+    }
+    .envelope.open {
+      transform: rotateX(180deg);
+    }
+    .front, .back, .flap {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      border-radius: 20px 20px 0 0;
+    }
+    .front {
+      background: linear-gradient(135deg, #a855f7, #7c3aed);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+      z-index: 3;
+      clip-path: polygon(0 0, 100% 0, 100% 60%, 50% 100%, 0 60%);
+    }
+    .back {
+      background: linear-gradient(135deg, #7c3aed, #553c9a);
+      z-index: 1;
+      transform: rotateX(180deg);
+      clip-path: polygon(0 40%, 50% 0, 100% 40%, 100% 100%, 0 100%);
+    }
+    .flap {
+      background: linear-gradient(to bottom, #d946ef, #a855f7);
+      z-index: 4;
+      clip-path: polygon(0 0, 100% 0, 50% 100%);
+      transform-origin: top;
+      transition: transform 1.2s ease;
+    }
+    .envelope.open .flap {
+      transform: rotateX(-180deg);
+    }
+    .seal {
+      position: absolute;
+      top: 40%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 80px;
+      height: 80px;
+      background: radial-gradient(circle, #e0bbff 20%, #d946ef 60%);
+      border-radius: 50%;
+      box-shadow: 0 0 30px rgba(217,70,239,0.8);
+      border: 8px solid #f3e8ff;
+      z-index: 5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.5rem;
+      color: white;
+      text-shadow: 0 0 10px rgba(0,0,0,0.5);
+      animation: pulseSeal 2s infinite alternate;
+    }
+    @keyframes pulseSeal {
+      from { transform: translate(-50%, -50%) scale(1); }
+      to   { transform: translate(-50%, -50%) scale(1.1); }
+    }
+    .message {
       position: absolute;
       top: 50%;
       left: 50%;
-      transform: translate(-50%, -50%) scale(0.9);
+      transform: translate(-50%, -50%) translateY(100px);
+      width: 90%;
+      max-width: 700px;
+      background: rgba(30, 10, 60, 0.85);
+      backdrop-filter: blur(12px);
+      border-radius: 25px;
+      padding: 40px 30px;
+      text-align: center;
+      opacity: 0;
+      transition: all 1s ease 0.6s;
+      box-shadow: 0 30px 70px rgba(0,0,0,0.5);
+      overflow-y: auto;
+      max-height: 70vh;
     }
-    .card.visible {
+    .envelope.open + .message {
       opacity: 1;
-      transform: translate(-50%, -50%) scale(1);
+      transform: translate(-50%, -50%) translateY(0);
+    }
+    .title {
+      font-family: 'Pinyon Script', cursive;
+      font-size: 4.5rem;
+      color: #f3e8ff;
+      margin-bottom: 20px;
+      text-shadow: 0 6px 15px rgba(124,58,237,0.8);
     }
     p {
-      font-size: 1.2rem;
-      line-height: 1.6;
-      margin: 12px 0;
+      font-size: 1.25rem;
+      line-height: 1.7;
+      margin: 15px 0;
       opacity: 0;
-      transform: translateY(20px);
-      transition: all 0.6s ease;
+      transform: translateY(30px);
+      transition: all 0.8s ease;
     }
     p.visible {
       opacity: 1;
@@ -96,31 +139,30 @@
     }
     .big {
       font-family: 'Great Vibes', cursive;
-      font-size: 3rem;
+      font-size: 3.8rem;
       color: #f3e8ff;
-      margin: 30px 0;
+      margin: 40px 0 30px;
       text-shadow: 0 5px 15px rgba(124,58,237,0.7);
-      animation: pulse 1.5s infinite;
+      animation: heartBeat 2.5s infinite;
     }
-    @keyframes pulse {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.05); }
-      100% { transform: scale(1); }
+    @keyframes heartBeat {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.06); }
     }
     .buttons {
       display: flex;
       justify-content: center;
-      gap: 40px;
-      margin: 30px 0;
+      gap: 50px;
+      margin: 40px 0;
     }
     button {
-      font-size: 1.4rem;
-      padding: 12px 40px;
+      font-size: 1.5rem;
+      padding: 15px 50px;
       border: none;
       border-radius: 50px;
       cursor: pointer;
       transition: all 0.4s ease;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.4);
     }
     #yes {
       background: linear-gradient(45deg, #d946ef, #a855f7);
@@ -128,118 +170,77 @@
     }
     #yes:hover {
       transform: scale(1.1);
-      box-shadow: 0 15px 30px rgba(168,85,247,0.7);
+      box-shadow: 0 20px 40px rgba(217,70,239,0.7);
     }
     #no {
       background: rgba(255,255,255,0.15);
       color: #e9d5ff;
     }
-    #no:hover {
-      background: rgba(255,255,255,0.1);
-    }
     #final {
       font-family: 'Parisienne', cursive;
-      font-size: 2rem;
+      font-size: 2.5rem;
       color: #f3e8ff;
-      margin-top: 30px;
+      margin-top: 40px;
+      line-height: 1.4;
       opacity: 0;
-      transition: opacity 1s ease;
-      line-height: 1.5;
+      transition: all 1.5s ease;
+      transform: scale(0.9);
     }
     #final.visible {
       opacity: 1;
+      transform: scale(1);
     }
-    /* Teddy Bear */
-    .teddy {
-      position: absolute;
-      bottom: 20px;
-      left: 20px;
-      transform: scale(0.7);
-      z-index: 5;
-      animation: breathe 4s ease-in-out infinite;
+    .final-heart {
+      font-size: 6rem;
+      color: #d946ef;
+      margin-top: 30px;
+      animation: floatHeart 4s ease-in-out infinite;
+      opacity: 0;
+      transition: opacity 2s ease 1s;
     }
-    @keyframes breathe {
-      0%, 100% { transform: scale(0.7); }
-      50% { transform: scale(0.72); }
+    #final.visible + .final-heart {
+      opacity: 1;
     }
-    .teddy .head, .teddy .ear1, .teddy .ear2, .teddy .body, .teddy .hand1, .teddy .hand2, .teddy .leg1, .teddy .leg2 {
-      background-color: #a855f7;
+    @keyframes floatHeart {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
     }
-    .teddy .stomach, .teddy .ear-m1, .teddy .ear-m2, .teddy .h, .teddy .l {
-      background-color: #e0bbff;
-      box-shadow: inset 6px -1px 10px 0px #7c3aedbe;
-    }
-    .teddy .nose {
-      background-color: #4c1d95;
-    }
-    .teddy .mouth {
-      border-bottom: 2px #4c1d95 solid;
-    }
-    .teddy .hand2 {
-      animation: hi 1s linear infinite;
-    }
-    @keyframes hi {
-      0% { transform: rotate(-15deg); }
-      50% { transform: rotate(-40deg); }
-      100% { transform: rotate(-15deg); }
-    }
-    /* Hearts from Medium tutorial, adapted to purple */
+    /* Falling hearts */
     .heart {
-      z-index: 1;
       position: absolute;
+      font-size: 2.2rem;
+      color: #d946ef;
       pointer-events: none;
+      animation: fall 7s linear infinite;
+      z-index: 5;
+      text-shadow: 0 0 10px rgba(217,70,239,0.7);
     }
-    .heart:before,
-    .heart:after {
-      content: "";
-      background-color: #d946ef;
-      position: absolute;
-      height: 30px;
-      width: 45px;
-      border-radius: 15px 0px 0px 15px;
-    }
-    .heart:before {
-      transform: rotate(45deg);
-    }
-    .heart:after {
-      left: 10.5px;
-      transform: rotate(135deg);
-    }
-    @keyframes heartfade {
-      0% { opacity: 1; }
-      50% { opacity: 0; }
-    }
-    .heart {
-      animation: heartfade 6s linear;
+    @keyframes fall {
+      0% { transform: translateY(-10vh) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(110vh) rotate(720deg); opacity: 0; }
     }
     @media (max-width: 600px) {
-      .title {
-        font-size: 3rem;
-      }
-      .big {
-        font-size: 2.5rem;
-      }
-      p {
-        font-size: 1rem;
-      }
-      .card {
-        padding: 20px;
-      }
-      .teddy {
-        transform: scale(0.5);
-        bottom: 10px;
-        left: 10px;
-      }
+      .envelope-container { width: 280px; height: 190px; }
+      .title { font-size: 3.5rem; }
+      .big { font-size: 3rem; }
+      p { font-size: 1.1rem; }
     }
   </style>
 </head>
 <body>
-  <div class="initial-screen" id="initial">
-    <h1 class="title">Pentru Alexia 💜</h1>
-    <button id="reveal-button">Descoperă mesajul meu 💜</button>
+
+  <div class="envelope-container" id="envelopeContainer">
+    <div class="envelope" id="envelope">
+      <div class="front"></div>
+      <div class="back"></div>
+      <div class="flap"></div>
+    </div>
+    <div class="seal">💜</div>
   </div>
 
-  <div class="card" id="card">
+  <div class="message" id="message">
+    <div class="title">Pentru Alexia 💜</div>
+
     <p>Helo draga mea Alexia</p>
     <p>Sunt eu Florin si am facut acest site special pentru tine</p>
     <p>Voiam sa iti spun ca in ultima perioada de cand am inceput sa vorbim chiar chiar chiar imi faci viata mai buna zilnic</p>
@@ -260,7 +261,7 @@
     <p>Cel mai important pentru mine este daca TU iti doresti</p>
     <p>Iti multumesc enorm ca ai fost langa mine si ca ai insemnat atat de mult pentru mine</p>
 
-    <div class="big">Vrei sa fii valentina mea 💜</div>
+    <div class="big">Vrei sa fii valentina mea</div>
 
     <div class="buttons">
       <button id="yes">DA 💜</button>
@@ -268,42 +269,26 @@
     </div>
 
     <div id="final"></div>
-  </div>
-
-  <!-- Teddy Bear -->
-  <div class="teddy">
-    <div class="head">
-      <div class="ear1"><div class="ear-m1"></div></div>
-      <div class="ear2"><div class="ear-m2"></div></div>
-      <div class="eye1"><div class="w"></div></div>
-      <div class="eye2"><div class="w"></div></div>
-      <div class="mouth-nose">
-        <div class="nose"></div>
-        <div class="mouth"></div>
-      </div>
-    </div>
-    <div class="body">
-      <div class="stomach"></div>
-      <div class="hand1"><div class="h"></div></div>
-      <div class="hand2"><div class="h"></div></div>
-      <div class="leg1"><div class="l"></div></div>
-      <div class="leg2"><div class="l"></div></div>
-    </div>
+    <div class="final-heart">💜</div>
   </div>
 
   <script>
-    // Reveal logic
-    document.getElementById('reveal-button').addEventListener('click', () => {
-      document.getElementById('initial').classList.add('hidden');
-      document.getElementById('card').classList.add('visible');
-      // Reveal paragraphs sequentially
-      const paragraphs = document.querySelectorAll('.card p');
-      paragraphs.forEach((p, index) => {
-        setTimeout(() => p.classList.add('visible'), index * 300);
-      });
+    const container = document.getElementById('envelopeContainer');
+    const envelope = document.getElementById('envelope');
+    const message = document.getElementById('message');
+    const paragraphs = document.querySelectorAll('#message p');
+
+    container.addEventListener('click', () => {
+      if (!envelope.classList.contains('open')) {
+        envelope.classList.add('open');
+        setTimeout(() => {
+          paragraphs.forEach((p, i) => {
+            setTimeout(() => p.classList.add('visible'), i * 400);
+          });
+        }, 800);
+      }
     });
 
-    // Button logic
     let scale = 1;
     const noBtn = document.getElementById('no');
     const yesBtn = document.getElementById('yes');
@@ -312,84 +297,36 @@
     noBtn.onclick = () => {
       scale += 0.3;
       yesBtn.style.transform = `scale(${scale})`;
-      noBtn.style.transform = `scale(${1 / scale})`;
-      if (scale > 2.5) {
-        noBtn.style.display = 'none';
+      noBtn.style.transform = `scale(${Math.max(0.6, 1 / scale)})`;
+      if (scale > 3) {
+        noBtn.style.opacity = '0';
+        noBtn.style.pointerEvents = 'none';
       }
     };
 
     yesBtn.onclick = () => {
-      final.innerHTML = 'Daca chiar ai ales da vreau sa iti spun ca probabil m ai facut cel mai fericit baiat din univers si din lumea asta<br><br>Promit sa nu te dezamagesc<br><br>Stiu ca poate nu sunt tipul tau dar cred ca oricine merita macar o sansa nu<br><br>❤️';
+      // Ascunde tot textul de mai sus și arată doar mesajul final + inima mov mare
+      document.querySelectorAll('#message > *:not(#final):not(.final-heart)').forEach(el => {
+        el.style.display = 'none';
+      });
+      final.innerHTML = 
+        `Daca chiar ai ales da vreau sa iti spun ca probabil m ai facut cel mai fericit baiat din univers si din lumea asta<br><br>` +
+        `Promit sa nu te dezamagesc<br><br>` +
+        `Stiu ca poate nu sunt tipul tau dar cred ca oricine merita macar o sansa nu<br><br>` +
+        `Te pup enorm 💜`;
       final.classList.add('visible');
       noBtn.style.display = 'none';
-      // Extra hearts
-      for (let i = 0; i < 50; i++) {
-        setTimeout(generateHeart, i * 50, Math.random() * window.innerWidth, Math.random() * window.innerHeight, 40 + Math.random() * 20, 1 - Math.random() * 2, Math.random() * 0.8 + 0.2);
-      }
+      // Extra falling hearts mov
+      setInterval(() => {
+        const heart = document.createElement('div');
+        heart.className = 'heart';
+        heart.innerHTML = '💜';
+        heart.style.left = Math.random() * 100 + 'vw';
+        heart.style.animationDuration = (Math.random() * 5 + 5) + 's';
+        document.body.appendChild(heart);
+        setTimeout(() => heart.remove(), 10000);
+      }, 300);
     };
-
-    // Hearts logic from tutorial
-    var brd = document.createElement("DIV");
-    document.body.insertBefore(brd, document.body.firstChild);
-    const duration = 3000;
-    const speed = 0.5;
-    const cursorXOffset = 0;
-    const cursorYOffset = -5;
-    var hearts = [];
-    function generateHeart(x, y, xBound, xStart, scale) {
-      var heart = document.createElement("DIV");
-      heart.setAttribute('class', 'heart');
-      brd.appendChild(heart);
-      heart.time = duration;
-      heart.x = x;
-      heart.y = y;
-      heart.bound = xBound || 30 + Math.random() * 20;
-      heart.direction = xStart || 1 - Math.random() * 2;
-      heart.style.left = heart.x + "px";
-      heart.style.top = heart.y + "px";
-      heart.scale = scale || Math.random() * 0.8 + 0.2;
-      heart.style.transform = "scale(" + heart.scale + "," + heart.scale + ")";
-      hearts.push(heart);
-      return heart;
-    }
-    var before = Date.now();
-    var id = setInterval(frame, 5);
-    function frame() {
-      var current = Date.now();
-      var deltaTime = current - before;
-      before = current;
-      for (var i in hearts) {
-        var heart = hearts[i];
-        heart.time -= deltaTime;
-        if (heart.time > 0) {
-          heart.y -= speed;
-          heart.style.top = heart.y + "px";
-          heart.style.left = heart.x + heart.direction * heart.bound * Math.sin(heart.y * heart.scale / 30) + "px";
-        } else {
-          heart.parentNode.removeChild(heart);
-          hearts.splice(i, 1);
-        }
-      }
-    }
-    var down = false;
-    var event = null;
-    document.onmousedown = function(e) { down = true; event = e; }
-    document.onmouseup = function(e) { down = false; }
-    document.onmousemove = function(e) { event = e; }
-    document.ontouchstart = function(e) { down = true; event = e.touches[0]; }
-    document.ontouchend = function(e) { down = false; }
-    document.ontouchmove = function(e) { event = e.touches[0]; }
-    var gr = setInterval(check, 100);
-    function check() {
-      if (down) {
-        var start = 1 - Math.round(Math.random()) * 2;
-        var scale = Math.random() * Math.random() * 0.8 + 0.2;
-        var bound = 30 + Math.random() * 20;
-        generateHeart(event.pageX - brd.offsetLeft + cursorXOffset, event.pageY - brd.offsetTop + cursorYOffset, bound, start, scale);
-      }
-    }
-    // Initial hearts
-    setInterval(() => generateHeart(Math.random() * window.innerWidth, window.innerHeight, null, null, 1), 500);
   </script>
 </body>
 </html>
