@@ -8,268 +8,240 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Parisienne&family=Pinyon+Script&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
-    * { padding: 0; margin: 0; box-sizing: border-box; }
-    html, body { height: 100%; }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
     body {
-      width: 100%;
-      background: linear-gradient(135deg, #a78bfa 0%, #7c3aed 50%, #4c1d95 100%);
-      font-size: 20px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      color: #f3e8ff;
-      overflow-x: hidden;
-      position: relative;
+      background: linear-gradient(135deg, #c084fc 0%, #7c3aed 50%, #4c1d95 100%);
+      color: #4c1d95;
+      font-family: "Poppins", sans-serif;
     }
-    @media (max-height: 500px) { body { margin: 25% 0 25% 0; } }
-    .envelop {
-      width: 15rem;
-      height: 10rem;
-      position: absolute;
-      left: 0;
-      right: 0;
-      margin: auto;
+    p {
+      font-size: 18px;
+      text-align: center;
+      margin-top: 40px;
     }
-    @media (min-width: 400px) and (max-width: 600px) { .envelop { width: 20rem; height: 15rem; } }
-    @media (min-width: 600px) { .envelop { width: 25rem; height: 20rem; } }
-    @media (min-width: 600px) and (min-height: 600px) { .envelop { bottom: 20%; } }
-    .envelop__front-paper {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      bottom: 0;
-      left: 0;
-      border-radius: 0.7rem;
-      border: 0.35rem solid #e0bbff;
-      background-color: #fff;
-      clip-path: polygon(100% 0%, 50% 70%, 0% 0%, 0% 100%, 100% 100%);
-      z-index: 300;
+    a {
+      color: #4c1d95;
     }
-    .envelop__back-paper {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      bottom: 0;
-      left: 0;
-      border-radius: 0.7rem;
-      background-color: #f8f8ff;
-      clip-path: polygon(0% 0%, 100% 0%, 90% 100%, 0% 90%);
-      z-index: 100;
+    a:hover {
+      color: #d946ef;
     }
-    .envelop__up-paper {
-      position: relative;
-      width: 100%;
-      height: 100%;
-      border-radius: 0.7rem;
-      background-color: #f8f8ff;
-      z-index: 400;
-      clip-path: polygon(0% 0%, 100% 0%, 50% 81%);
+    button {
+      background: transparent;
+      border: none;
+      font-family: inherit;
+      cursor: pointer;
     }
-    .envelop__sticker {
-      width: 100%;
-      height: 20%;
-      position: absolute;
-      margin: auto;
-      top: 30%;
-      left: 0;
-      bottom: 0;
-      right: 0;
-      z-index: 400;
-      background-color: #d946ef;
-      border: 0.3rem solid #e0bbff;
-      border-radius: 50%;
+    /* this article is used to center the component within the viewport */
+    article {
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 3rem;
-      color: #fff;
+      height: 100vh;
+      width: 100%;
+    }
+    /* MESSAGES */
+    .message-2 {
+      display: none;
+    }
+
+    /* ENVELOPE */
+
+    /* envelope-container contains all elements of the featured component (you can think of it like your canvas area) */
+    .envelope-container {
+      position: relative; /* needed to allow for positioning some elements as absolute within the container */
+      height: 500px;
+      width: 350px;
+    }
+    .envelope-base {
+      position: absolute;
+      bottom: 0;
+      height: 200px;
+      width: 100%;
+      border: 1px solid #e0bbff;
+      border-radius: 5px;
+      background: white;
+      box-shadow: 0px 10px 30px rgba(0,0,0,.3), 0px 8px 10px rgba(0,0,0,.3);
+      z-index: 1;
+    }
+    .envelope-flap {
+      position: absolute;
+      bottom: 50px;
+      height: 300px;
+      width: 100%;
+      z-index: 10;
+    }
+    .inner {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      height: 50%;
+      width: 100%;
+    }
+    .inner-polygon {
+      fill: white; 
+      stroke: #e0bbff; 
+      stroke-width: 1;
+    }
+    .inner-open {
+      fill: #f3e8ff;
+    }
+    .outer {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      overflow: hidden;
+    }
+    .outer-polygon {
+      fill: white; 
+      stroke: #e0bbff; 
+      stroke-width: 1;
+    }
+    .outer-open {
+      opacity: 1;
+    }
+
+    /* HEART BUTTON */
+    .heart-btn {
+      position: absolute;
+      bottom: 20px;
+      left: 145px;
+      color: #d946ef;
+      font-size: 60px;
+      z-index: 1000;
       animation: pulseStamp 2s ease-in-out infinite alternate;
     }
     @keyframes pulseStamp {
-      from { transform: scale(1); box-shadow: 0 0 40px rgba(217,70,239,0.7); }
-      to { transform: scale(1.15); box-shadow: 0 0 70px rgba(217,70,239,1); }
+      from { transform: scale(1); text-shadow: 0 0 10px rgba(217,70,239,0.7); }
+      to { transform: scale(1.15); text-shadow: 0 0 20px rgba(217,70,239,1); }
     }
-    .envelop__false-sticker {
-      width: 20%;
-      height: 20%;
+
+    /* CLOSE BUTTON */
+    .close-btn {
       position: absolute;
-      margin: auto;
-      top: 30%;
-      left: 80%;
-      bottom: 0;
-      right: 0;
-      z-index: 300;
-      background-color: #d946ef;
-      border: 0.3rem solid #e0bbff;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.5rem;
-      color: #fff;
+      bottom: 10px;
+      left: 10px;
+      color: #e0bbff;
+      background: #7c3aed;
+      border: none;
+      border-radius: 5px;
+      padding: 8px 16px;
+      box-shadow: 0px 2px 6px rgba(0,0,0,.2);
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      display: none;
+      z-index:10000;
     }
-    .envelop__content {
+    .close-btn:hover {
+      color: white;
+      background: #d946ef;
+      box-shadow: 0px 2px 4px rgba(0,0,0,.1);
+    }
+
+    /* REUSABLE TOGGLE CLASSES */
+    .hide {
+      display: none;
+    }
+    .show {
+      display: block;
+    }
+
+    .letter-content {
       position: absolute;
+      top: 0;
+      left: 0;
       width: 100%;
       height: 100%;
-      bottom: 0;
-      left: 0;
-      z-index: 200;
-    }
-    .letter {
-      width: 95%;
-      background-color: #fff;
-      padding: 30px 25px;
-      border-radius: 15px;
-      box-shadow: 0 0 20px rgba(124,58,237,0.3);
-      color: #4c1d95;
-      font-size: 1.1rem;
-      line-height: 1.6;
-      opacity: 0;
-      transform: translateY(100px);
-      transition: opacity 1s ease, transform 1s ease;
+      padding: 20px;
       overflow-y: auto;
-      max-height: 80vh;
-      text-align: center;
     }
-    .letter.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    .instruction {
-      position: absolute;
-      bottom: -60px;
-      left: 50%;
-      transform: translateX(-50%);
-      font-family: 'Parisienne', cursive;
-      font-size: 2rem;
-      color: #f3e8ff;
-      text-shadow: 0 4px 10px rgba(124,58,237,0.8);
-      pointer-events: none;
-      animation: fadePulse 3s infinite;
-      white-space: nowrap;
-    }
-    @keyframes fadePulse {
-      0%, 100% { opacity: 0.7; transform: translateX(-50%) scale(1); }
-      50% { opacity: 1; transform: translateX(-50%) scale(1.05); }
-    }
-    .title {
-      font-family: 'Pinyon Script', cursive;
-      font-size: 4rem;
-      color: #7c3aed;
-      margin-bottom: 20px;
-      text-shadow: 0 4px 12px rgba(124,58,237,0.5);
-    }
-    p {
-      font-size: 1.2rem;
-      line-height: 1.7;
-      margin: 15px 0;
-      opacity: 0;
-      transform: translateY(30px);
-      transition: all 0.8s ease;
-    }
-    p.visible {
-      opacity: 1;
-      transform: translateY(0);
+    .letter-content p {
+      font-size: 16px;
+      margin: 10px 0;
+      color: #4c1d95;
     }
     .big {
       font-family: 'Great Vibes', cursive;
-      font-size: 3.5rem;
+      font-size: 32px;
       color: #d946ef;
-      margin: 40px 0 30px;
-      text-shadow: 0 4px 15px rgba(217,70,239,0.5);
-      animation: heartBeat 2.5s infinite;
-    }
-    @keyframes heartBeat {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.06); }
+      margin: 30px 0;
+      text-align: center;
     }
     .buttons {
       display: flex;
       justify-content: center;
-      gap: 50px;
-      margin: 40px 0;
+      gap: 20px;
+      margin: 30px 0;
     }
-    button {
-      font-size: 1.4rem;
-      padding: 12px 40px;
-      border: none;
-      border-radius: 50px;
+    .buttons button {
+      padding: 10px 30px;
+      border-radius: 30px;
+      font-size: 18px;
+      color: white;
       cursor: pointer;
-      transition: all 0.4s ease;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
     }
     #yes {
-      background: linear-gradient(45deg, #d946ef, #a855f7);
-      color: white;
-    }
-    #yes:hover {
-      transform: scale(1.1);
-      box-shadow: 0 15px 30px rgba(168,85,247,0.7);
+      background: #d946ef;
     }
     #no {
-      background: rgba(124,58,237,0.2);
-      color: #e9d5ff;
-    }
-    #no:hover {
-      background: rgba(124,58,237,0.1);
+      background: #7c3aed;
     }
     #final {
       font-family: 'Parisienne', cursive;
-      font-size: 2.2rem;
+      font-size: 24px;
       color: #d946ef;
+      text-align: center;
       margin-top: 30px;
-      opacity: 0;
-      transition: opacity 1s ease;
       line-height: 1.5;
     }
-    #final.visible {
-      opacity: 1;
-    }
     .final-heart {
-      font-size: 6rem;
+      font-size: 50px;
       color: #d946ef;
-      margin-top: 25px;
-      animation: floatHeart 4s ease-in-out infinite;
-      opacity: 0;
-      transition: opacity 1s ease 1s;
-    }
-    #final.visible + .final-heart {
-      opacity: 1;
+      text-align: center;
+      margin-top: 20px;
+      animation: floatHeart 3s ease-in-out infinite;
     }
     @keyframes floatHeart {
       0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-20px); }
+      50% { transform: translateY(-15px); }
     }
     .heart {
       position: absolute;
-      font-size: 2rem;
+      font-size: 30px;
       color: #d946ef;
-      animation: fall 6s linear infinite;
+      animation: fall 5s linear infinite;
       z-index: 2;
     }
     @keyframes fall {
       0% { transform: translateY(-100vh) rotate(0deg); opacity: 1; }
       100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
     }
-    .fade-out {
-      opacity: 0;
-      transform: translateY(50px);
-      transition: all 0.8s ease;
-      pointer-events: none;
-    }
   </style>
 </head>
 <body>
-
-  <div class="envelop">
-    <div class="envelop__front-paper"></div>
-    <div class="envelop__back-paper"></div>
-    <div class="envelop__up-paper js-up-paper"></div>
-    <div class="envelop__sticker js-sticker">💜</div>
-    <div class="envelop__false-sticker">💜</div>
-    <div class="envelop__content js-envelop-content">
-      <div class="letter">
+  <article>
+    <div class="envelope-container">
+      <p class="message message-1" id="message-1"><strong>Apasă pe inimă să deschizi!</strong></p>
+      <p class="message message-2" id="message-2">Mesajul tău special 💜</p>
+      <button class="close-btn" id="close-btn" onclick="toggleEnvelope()">Închide</button>
+      <button class="heart-btn" id="heart-btn" onclick="toggleEnvelope()">💜</button>
+      <div class="envelope-flap">
+        <svg class="inner">
+          <polygon class="inner-polygon" id="inner-polygon" points="5,0 345,0 175,145"></polygon>
+        </svg>
+        <svg class="outer" id="outer">
+          <polygon class="outer-polygon" points="5,150 345,150 175,0"></polygon>
+        </svg>
+      </div>
+      <div class="envelope-base"></div>
+      <div class="letter-content">
         <div class="title">Pentru Alexia 💜</div>
         <p>Helo draga mea Alexia</p>
         <p>Sunt eu Florin si am facut acest site special pentru tine</p>
@@ -302,39 +274,22 @@
         <div class="final-heart">💜</div>
       </div>
     </div>
-  </div>
-
-  <div class="instruction">Apasă pe timbru! 💜</div>
-
+  </article>
   <script>
-    const instruction = document.querySelector('.instruction');
-    const stickerBtn = document.querySelector('.envelop__sticker');
-    const upPaperBtn = document.querySelector('.js-up-paper');
-    const content = document.querySelector('.js-envelop-content');
-    const letter = document.querySelector('.letter');
-
-    function openEnvelope() {
-      content.style.height = '150%';
-      letter.classList.add('visible');
-      upPaperBtn.removeEventListener('click', openEnvelope);
-      upPaperBtn.style.cursor = 'default';
-      instruction.style.display = 'none';
-      const paragraphs = document.querySelectorAll('p');
-      paragraphs.forEach((p, index) => {
-        setTimeout(() => p.classList.add('visible'), index * 300 + 500);
-      });
+    function toggleEnvelope() {
+      const innerPolygon = document.getElementById("inner-polygon");
+      const outer = document.getElementById("outer");
+      const closeBtn = document.getElementById("close-btn");
+      const message1 = document.getElementById("message-1");
+      const message2 = document.getElementById("message-2");
+      const heartBtn = document.getElementById("heart-btn");
+      innerPolygon.classList.toggle("inner-open");
+      outer.classList.toggle("outer-open");
+      heartBtn.classList.toggle("hide");
+      closeBtn.classList.toggle("show");
+      message1.classList.toggle("hide");
+      message2.classList.toggle("show");
     }
-
-    function cutSticker() {
-      stickerBtn.style.width = '20%';
-      stickerBtn.style.left = '-80%';
-      document.body.style.cursor = 'default';
-      stickerBtn.removeEventListener('click', cutSticker);
-      upPaperBtn.addEventListener('click', openEnvelope);
-      upPaperBtn.style.cursor = 'pointer';
-    }
-
-    stickerBtn.addEventListener('click', cutSticker);
 
     let scale = 1;
     const noBtn = document.getElementById('no');
@@ -352,12 +307,15 @@
 
     yesBtn.onclick = () => {
       const toFade = document.querySelectorAll('.title, p, .big, .buttons');
-      toFade.forEach(el => el.classList.add('fade-out'));
+      toFade.forEach(el => {
+        el.classList.add('fade-out');
+      });
       setTimeout(() => {
-        toFade.forEach(el => el.style.display = 'none');
+        toFade.forEach(el => {
+          el.style.display = 'none';
+        });
         final.innerHTML = 'Daca chiar ai ales da vreau sa iti spun ca probabil m ai facut cel mai fericit baiat din univers si din lumea asta<br><br>Promit sa nu te dezamagesc<br><br>Stiu ca poate nu sunt tipul tau dar cred ca oricine merita macar o sansa nu<br><br>💜';
         final.classList.add('visible');
-        noBtn.style.display = 'none';
       }, 800);
 
       setInterval(createHeart, 300);
