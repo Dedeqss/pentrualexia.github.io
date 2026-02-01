@@ -2,7 +2,7 @@
 <html lang="ro">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>Pentru Alexia 💜</title>
 <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Parisienne&family=Caveat:wght@400;700&display=swap" rel="stylesheet">
 <style>
@@ -19,79 +19,50 @@ body{
   display:flex;
   justify-content:center;
   align-items:center;
+  color:#fff;
+  text-align:center;
 }
-@keyframes bgMove{
-  from{background-position:0% 0%}
-  to{background-position:100% 100%}
-}
+@keyframes bgMove{from{background-position:0% 0%}to{background-position:100% 100%}}
 
 /* INTRO PLIC */
-.intro{
-  position:fixed; inset:0;
-  display:flex; flex-direction:column;
-  justify-content:center; align-items:center;
-  backdrop-filter:blur(6px);
-  z-index:50;
-  transition:opacity 2s ease;
-}
+.intro{position:fixed; inset:0; display:flex; flex-direction:column; justify-content:center; align-items:center; backdrop-filter:blur(6px); z-index:50; transition:opacity 2s ease;}
 .intro.hide{opacity:0; pointer-events:none;}
-.envelope{
-  width:180px; height:120px;
-  position:relative;
-  cursor:pointer;
-  transform-style:preserve-3d;
-  animation:float 4s ease-in-out infinite;
-}
+.envelope{width:180px; height:120px; position:relative; cursor:pointer; transform-style:preserve-3d; animation:float 4s ease-in-out infinite;}
 @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-15px)}}
-.env-body{
-  width:100%; height:100%;
-  background:#9333ea;
-  border-radius:12px;
-  position:absolute;
-}
-.env-flap{
-  width:0; height:0;
-  border-left:90px solid transparent;
-  border-right:90px solid transparent;
-  border-bottom:60px solid #a855f7;
-  position:absolute; top:-60px; left:0;
-  transform-origin:bottom; transition:transform 1.5s ease;
-}
+.env-body{width:100%; height:100%; background:#9333ea; border-radius:12px; position:absolute;}
+.env-flap{width:0; height:0; border-left:90px solid transparent; border-right:90px solid transparent; border-bottom:60px solid #a855f7; position:absolute; top:-60px; left:0; transform-origin:bottom; transition:transform 1.5s ease;}
 .envelope.open .env-flap{transform:rotateX(180deg);}
-.intro-text{
-  margin-top:40px; font-family:'Parisienne'; font-size:3rem; opacity:.95;
-}
+.intro-text{margin-top:40px; font-family:'Parisienne'; font-size:3rem; opacity:.95; color:#fff;}
 
 /* CARD */
-.card{
-  max-width:95%; margin:120px auto;
-  background:rgba(20,0,40,.65);
-  backdrop-filter:blur(18px);
-  border-radius:40px;
-  padding:50px 35px;
-  box-shadow:0 0 120px rgba(216,180,254,.35);
-  opacity:0;
-  transform:translateY(80px) scale(.92);
-  transition:all 2s cubic-bezier(.16,1,.3,1);
-}
+.card{max-width:95%; margin:120px auto; background:rgba(20,0,40,.65); backdrop-filter:blur(18px); border-radius:40px; padding:50px 35px; box-shadow:0 0 120px rgba(216,180,254,.35); opacity:0; transform:translateY(80px) scale(.92); transition:all 2s cubic-bezier(.16,1,.3,1);}
 .card.show{opacity:1; transform:none;}
-h1{font-family:'Great Vibes'; font-size:5.8rem; margin-bottom:40px;}
-p{font-size:1.45rem; margin:22px 0; opacity:0; transform:translateY(30px); transition:all 1s ease;}
+h1{font-family:'Great Vibes'; font-size:5.8rem; margin-bottom:40px; color:#fff;}
+p{font-size:1.45rem; margin:22px 0; opacity:0; transform:translateY(30px); transition:all 1s ease; color:#fff;}
 p.show{opacity:1; transform:none;}
-.big{font-family:'Parisienne'; font-size:5rem; margin:70px 0; animation:pulse 4s infinite;}
+.big{font-family:'Parisienne'; font-size:5rem; margin:70px 0; animation:pulse 4s infinite; color:#fff;}
 @keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.1)}}
 .buttons{display:flex; justify-content:center; gap:50px; flex-wrap:wrap;}
 button{font-size:2rem; padding:18px 65px; border:none; border-radius:80px; cursor:pointer; transition:.3s;}
 #yes{background:linear-gradient(135deg,#d946ef,#7c3aed); color:white; box-shadow:0 0 40px rgba(217,70,239,.6);}
 #yes:hover{transform:scale(1.15);}
 #no{background:rgba(255,255,255,.25); color:white;}
-#final{margin-top:60px; font-family:'Parisienne'; font-size:3.2rem; opacity:0; transition:2s;}
+#final{margin-top:60px; font-family:'Parisienne'; font-size:3.2rem; opacity:0; transition:2s; color:#fff;}
 #final.show{opacity:1;}
 
 /* FALLING EMOJI */
 .fall{position:fixed; top:-10vh; animation:fall linear forwards; pointer-events:none; z-index:10;}
 @keyframes fall{to{transform:translateY(120vh) translateX(var(--x)) rotate(var(--r)); opacity:0;}}
 
+/* RESPONSIVE */
+@media(max-width:480px){
+  h1{font-size:4.2rem;}
+  p{font-size:1.2rem;}
+  .big{font-size:3.8rem;}
+  .intro-text{font-size:2.2rem;}
+  button{font-size:1.6rem; padding:14px 50px;}
+  .envelope{width:130px; height:90px;}
+}
 </style>
 </head>
 <body>
@@ -106,8 +77,6 @@ button{font-size:2rem; padding:18px 65px; border:none; border-radius:80px; curso
 
 <div class="card" id="card">
 <h1>Pentru Alexia 💜</h1>
-
-<!-- TEXTUL TAU COMPLET -->
 <p>Helo draga mea Alexia</p>
 <p>Sunt eu Florin si am facut acest site special pentru tine</p>
 <p>Voiam sa iti spun ca in ultima perioada de cand am inceput sa vorbim chiar chiar chiar imi faci viata mai buna zilnic</p>
@@ -162,7 +131,7 @@ no.onclick=()=>{
 yes.onclick=()=>{
   final.innerHTML="Ai spus DA… și m-ai făcut incredibil de fericit 💜";
   final.classList.add("show");
-  // cascade rapid emoji + confetti mov + hearts + urs + lenes
+  // cascade rapid emoji + hearts + urs + leneși
   for(let i=0;i<150;i++){setTimeout(()=>createFall(false),i*25);}
 };
 
