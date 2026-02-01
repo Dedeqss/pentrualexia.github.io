@@ -1,181 +1,223 @@
 <!DOCTYPE html>
 <html lang="ro">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pentru Alexia ❤️</title>
-
-<style>
-body {
-  margin: 0;
-  min-height: 100vh;
-  background: linear-gradient(135deg, #ff6a88, #ff99ac);
-  font-family: "Segoe UI", sans-serif;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 20px;
-  overflow-x: hidden;
-}
-
-.card {
-  background: white;
-  max-width: 700px;
-  width: 100%;
-  padding: 30px;
-  border-radius: 25px;
-  text-align: center;
-  box-shadow: 0 25px 50px rgba(0,0,0,0.25);
-  animation: fadeIn 1.5s ease;
-}
-
-p {
-  font-size: 20px;
-  line-height: 1.6;
-  margin-bottom: 18px;
-}
-
-.big {
-  font-size: 28px;
-  font-weight: bold;
-  margin-top: 30px;
-}
-
-.buttons {
-  margin-top: 25px;
-  position: relative;
-  height: 120px;
-}
-
-button {
-  font-size: 22px;
-  padding: 15px 35px;
-  border: none;
-  border-radius: 40px;
-  cursor: pointer;
-  transition: all 0.4s ease;
-}
-
-#yes {
-  background: #e91e63;
-  color: white;
-}
-
-#no {
-  background: #ccc;
-  position: absolute;
-  right: 0;
-}
-
-#final {
-  font-size: 22px;
-  margin-top: 25px;
-  color: #e91e63;
-  animation: fadeIn 1s ease;
-}
-
-.heart {
-  position: fixed;
-  bottom: -20px;
-  font-size: 20px;
-  animation: float 6s linear infinite;
-  opacity: 0.8;
-}
-
-@keyframes fadeIn {
-  from {opacity: 0; transform: translateY(20px);}
-  to {opacity: 1; transform: translateY(0);}
-}
-
-@keyframes float {
-  from {transform: translateY(0);}
-  to {transform: translateY(-120vh);}
-}
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Pentru Alexia mea adorată 💜</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #a78bfa 0%, #7c3aed 40%, #4c1d95 100%);
+      font-family: 'Poppins', sans-serif;
+      color: #fff;
+      overflow-x: hidden;
+      position: relative;
+    }
+    .overlay {
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(circle at 30% 20%, rgba(167,139,250,0.15) 0%, transparent 50%);
+      pointer-events: none;
+      z-index: 1;
+    }
+    .card {
+      position: relative;
+      max-width: 720px;
+      margin: 40px auto;
+      padding: 45px 35px;
+      background: rgba(30, 10, 60, 0.65);
+      backdrop-filter: blur(12px);
+      border-radius: 32px;
+      border: 1px solid rgba(167,139,250, 0.25);
+      box-shadow: 0 30px 80px rgba(0,0,0,0.5);
+      text-align: center;
+      z-index: 10;
+      animation: floatCard 7s ease-in-out infinite alternate;
+    }
+    @keyframes floatCard {
+      from { transform: translateY(0) scale(1); }
+      to   { transform: translateY(-15px) scale(1.015); }
+    }
+    h1 {
+      font-family: 'Dancing Script', cursive;
+      font-size: 4.2rem;
+      color: #e0bbff;
+      margin-bottom: 10px;
+      text-shadow: 0 4px 15px rgba(124,58,237,0.6);
+    }
+    .subtitle {
+      font-size: 1.4rem;
+      color: #d1c4ff;
+      margin-bottom: 30px;
+      font-weight: 300;
+    }
+    p {
+      font-size: 1.25rem;
+      line-height: 1.8;
+      margin: 18px 0;
+      color: #e9d5ff;
+      opacity: 0.95;
+      animation: fadeInText 1.2s ease forwards;
+      animation-delay: calc(var(--order) * 0.4s);
+      opacity: 0;
+    }
+    .big-question {
+      font-family: 'Dancing Script', cursive;
+      font-size: 3.5rem;
+      color: #f3e8ff;
+      margin: 45px 0 35px;
+      text-shadow: 0 5px 20px rgba(124,58,237,0.7);
+      animation: pulse 4s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%,100% { transform: scale(1); }
+      50%     { transform: scale(1.06); }
+    }
+    .buttons {
+      display: flex;
+      justify-content: center;
+      gap: 60px;
+      margin: 50px 0 30px;
+      position: relative;
+    }
+    button {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 500;
+      padding: 18px 60px;
+      border: none;
+      border-radius: 60px;
+      cursor: pointer;
+      transition: all 0.45s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    }
+    #yes {
+      background: linear-gradient(45deg, #c084fc, #a855f7);
+      color: white;
+    }
+    #yes:hover {
+      transform: translateY(-8px) scale(1.12);
+      box-shadow: 0 20px 50px rgba(168,85,247,0.6);
+    }
+    #no {
+      background: rgba(255,255,255,0.15);
+      color: #e0bbff;
+      border: 2px solid #c4b5fd;
+    }
+    #no:hover {
+      background: rgba(255,255,255,0.08);
+      transform: translateY(-3px);
+    }
+    #final {
+      font-family: 'Dancing Script', cursive;
+      font-size: 2.6rem;
+      color: #f3e8ff;
+      margin-top: 40px;
+      line-height: 1.4;
+      opacity: 0;
+      transition: opacity 1.2s ease;
+    }
+    .heart {
+      position: fixed;
+      color: #d1c4ff;
+      font-size: 1.8rem;
+      pointer-events: none;
+      user-select: none;
+      animation: fall linear infinite;
+      z-index: 5;
+      text-shadow: 0 0 10px rgba(167,139,250,0.8);
+    }
+    @keyframes fall {
+      0%   { transform: translateY(-10vh) rotate(0deg); opacity: 0.9; }
+      100% { transform: translateY(110vh) rotate(720deg); opacity: 0; }
+    }
+    @keyframes fadeInText {
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
 </head>
-
 <body>
 
+<div class="overlay"></div>
+
 <div class="card">
+  <h1>Pentru Alexia mea ❤️</h1>
+  <div class="subtitle">de la Florin</div>
 
-<p>Helo draga mea Alexia</p>
+  <p style="--order:1">Helo draga mea Alexia 💜</p>
+  <p style="--order:2">Sunt eu Florin și ți-am făcut acest loc special doar pentru tine...</p>
+  <p style="--order:3">În ultima perioadă de când vorbim tu îmi faci viața mult mai frumoasă în fiecare zi.</p>
+  <p style="--order:4">Parcă totul devine mai luminos doar știind că seara stau cu tine la telefon.</p>
+  <p style="--order:5">Îți mulțumesc enorm că mă asculți, că stai cu mine, că simt că îți pasă cu adevărat.</p>
+  <p style="--order:6">Și eu țin extrem de mult la tine și ascult fiecare poveste a ta cu cel mai mare entuziasm.</p>
+  <p style="--order:7">Mă faci atât de fericit încât nici nu știu cum să-ți explic...</p>
+  <p style="--order:8">Doar prezența ta îmi schimbă complet starea, indiferent despre ce vorbim.</p>
 
-<p>Sunt eu Florin si am facut acest site special pentru tine</p>
+  <p style="--order:9" class="big-question">Vrei să fii Valentina mea? 💜</p>
 
-<p>Voiam sa iti spun ca in ultima perioada de cand am inceput sa vorbim chiar chiar chiar imi faci viata mai buna zilnic</p>
+  <div class="buttons">
+    <button id="yes" onclick="yesClick()">DA 💜</button>
+    <button id="no" onclick="noClick()">NU</button>
+  </div>
 
-<p>Parca doar cand stiu ca stau seara cu tine in apel totul devine mult mai frumos</p>
-
-<p>Apreciez enorm ca stai cu mine in fiecare seara imi asculti problemele si simt ca chiar iti pasa</p>
-
-<p>Eu tin extrem de mult la tine si de fiecare data iti ascult povestile tale cu cel mai mare entuziasm posibil</p>
-
-<p>Sunt atat de fericit cand te ascult incat nici nu pot explica</p>
-
-<p>Mereu imi faci seara mai frumoasa si nu conteaza despre ce vorbim sau ce facem</p>
-
-<p>Doar faptul ca esti acolo cu mine imi schimba complet starea</p>
-
-<p>Stiu ca esti intr o situatie ciudata cu Strambu si te gandesti si la Armyn</p>
-
-<p>Dar sincer parca in ultima perioada am vazut cat de draguta esti cu mine si cu toata lumea</p>
-
-<p>As vrea sa ne apropiem cat mai mult daca iti doresti si tu</p>
-
-<p>De aceea vreau sa iti adresez o intrebare extrem de importanta pentru mine</p>
-
-<p>Daca nu vrei este complet ok te inteleg perfect si nu voi fi trist</p>
-
-<p>Din ce mi ai spus pe 14 februarie nu ai nimic planificat</p>
-
-<p>Asa ca voiam sa te intreb daca ai vrea sa petrecem ziua aceea impreuna</p>
-
-<p>Sa facem lucruri dragute poate sa iesim prin mall sau oriunde ne simtim bine</p>
-
-<p>Cel mai important pentru mine este daca TU iti doresti</p>
-
-<p>Iti multumesc enorm ca ai fost langa mine si ca ai insemnat atat de mult pentru mine</p>
-
-<div class="big">Vrei sa fii valentina mea</div>
-
-<div class="buttons">
-  <button id="yes" onclick="yesClick()">DA</button>
-  <button id="no" onclick="noClick()">NU</button>
-</div>
-
-<div id="final"></div>
-
+  <div id="final"></div>
 </div>
 
 <script>
 let scale = 1;
+const noBtn = document.getElementById("no");
+const yesBtn = document.getElementById("yes");
+const finalMsg = document.getElementById("final");
 
 function noClick() {
-  scale += 0.25;
-  document.getElementById("yes").style.transform = `scale(${scale})`;
-  document.getElementById("no").style.transform = "scale(0.7)";
-  if (scale >= 2.2) {
-    document.getElementById("no").style.display = "none";
+  scale += 0.28;
+  yesBtn.style.transform = `scale(${scale})`;
+  noBtn.style.transform = `scale(${1 / (scale * 0.8)})`;
+  if (scale > 2.8) {
+    noBtn.style.opacity = "0";
+    noBtn.style.pointerEvents = "none";
   }
 }
 
 function yesClick() {
-  document.getElementById("final").innerHTML =
-  "Daca chiar ai ales da vreau sa iti spun ca probabil m ai facut cel mai fericit baiat din univers si din lumea asta<br><br>Promit sa nu te dezamagesc<br><br>Stiu ca poate nu sunt tipul tau dar cred ca oricine merita macar o sansa nu<br><br>❤️";
+  finalMsg.innerHTML = 
+    `Dacă ai zis DA... probabil m-ai făcut cel mai fericit băiat din univers în seara asta 💜<br><br>` +
+    `Îți promit din suflet să nu te dezamăgesc niciodată.<br>` +
+    `Știu că poate nu sunt genul tău clasic, dar cred că oricine merită măcar o șansă, nu?<br><br>` +
+    `Te pup enorm și abia aștept să te țin în brațe. 🌙💜`;
+  finalMsg.style.opacity = "1";
+  yesBtn.disabled = true;
+  noBtn.style.display = "none";
+  createExtraHearts(30);
 }
 
 function createHeart() {
   const heart = document.createElement("div");
   heart.className = "heart";
-  heart.innerHTML = "❤️";
+  heart.innerHTML = Math.random() > 0.3 ? "💜" : "✨";
   heart.style.left = Math.random() * 100 + "vw";
-  heart.style.fontSize = Math.random() * 20 + 15 + "px";
+  heart.style.fontSize = (Math.random() * 2.2 + 1.2) + "rem";
+  heart.style.animationDuration = (Math.random() * 8 + 9) + "s";
+  heart.style.animationDelay = Math.random() * 3 + "s";
   document.body.appendChild(heart);
-  setTimeout(() => heart.remove(), 6000);
+  setTimeout(() => heart.remove(), 15000);
 }
 
-setInterval(createHeart, 500);
-</script>
+function createExtraHearts(count) {
+  for(let i = 0; i < count; i++) {
+    setTimeout(createHeart, i * 80);
+  }
+}
 
+setInterval(createHeart, 600);
+</script>
 </body>
 </html>
