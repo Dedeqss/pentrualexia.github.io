@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8">
+  <title>Pentru Alexia ❤️</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background: linear-gradient(135deg, #ff758c, #ff7eb3);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Segoe UI', sans-serif;
+    }
+    .card {
+      background: white;
+      padding: 40px;
+      border-radius: 20px;
+      text-align: center;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+      max-width: 500px;
+    }
+    h1 {
+      color: #e91e63;
+    }
+    button {
+      margin: 15px;
+      padding: 15px 30px;
+      font-size: 18px;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+    }
+    .yes {
+      background: #e91e63;
+      color: white;
+    }
+    .no {
+      background: #ccc;
+      position: absolute;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Alexia ❤️</h1>
+    <p>
+      De când ești în viața mea, totul e mai frumos.<br>
+      Zâmbetul tău e locul meu preferat.
+    </p>
+    <h2>Vrei să fii soția mea? 💍</h2>
+    <button class="yes" onclick="accept()">DA</button>
+    <button class="no" id="no">Nu</button>
+    <p id="msg"></p>
+  </div>
+
+  <script>
+    function accept() {
+      document.getElementById("msg").innerHTML =
+        "💖 Știam! Te iubesc pentru totdeauna 💖";
+    }
+
+    const noBtn = document.getElementById("no");
+    noBtn.addEventListener("mouseover", () => {
+      noBtn.style.left = Math.random() * 80 + "%";
+      noBtn.style.top = Math.random() * 80 + "%";
+    });
+  </script>
+</body>
+</html>
