@@ -1,330 +1,263 @@
 <!DOCTYPE html>
 <html lang="ro">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Pentru Alexia mea adorată 💜</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Parisienne&family=Pinyon+Script&family=Caveat:wght@400;700&display=swap" rel="stylesheet">
-  <style>
-    * { margin:0; padding:0; box-sizing:border-box; }
-    body {
-      min-height:100vh;
-      background:linear-gradient(135deg,#c084fc 0%,#9f7aea 30%,#7c3aed 70%,#4c1d95 100%);
-      font-family:'Caveat',cursive;
-      color:#f3e8ff;
-      overflow-x:hidden;
-      position:relative;
-      display:flex;
-      justify-content:center;
-      align-items:center;
-      padding:20px;
-      text-align:center;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pentru Alexia 💜</title>
 
-    /* INTRO PLIC */
-    .intro-screen {
-      position:fixed;
-      inset:0;
-      display:flex;
-      flex-direction:column;
-      justify-content:center;
-      align-items:center;
-      z-index:20;
-      transition:opacity 1.5s ease;
-      background:linear-gradient(135deg,#c084fc 0%,#9f7aea 30%,#7c3aed 70%,#4c1d95 100%);
-    }
-    .intro-screen.fade-out {
-      opacity:0;
-      pointer-events:none;
-    }
-    .envelope {
-      font-size:10rem;
-      cursor:pointer;
-      transition: transform 1.2s ease, opacity 1.2s ease;
-      position:relative;
-      display:flex;
-      justify-content:center;
-      align-items:center;
-      user-select:none;
-    }
-    .envelope.open {
-      transform: scale(6) rotateX(180deg);
-      opacity:0;
-    }
-    .intro-text {
-      margin-top:30px;
-      font-family:'Parisienne',cursive;
-      font-size:3rem;
-      opacity:0.9;
-      color:#f3e8ff;
-      text-shadow:0 5px 15px rgba(124,58,237,0.7);
-    }
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Parisienne&family=Pinyon+Script&family=Caveat:wght@400;700&display=swap" rel="stylesheet">
 
-    /* CARD */
-    .card {
-      background:rgba(30,10,60,0.75);
-      backdrop-filter:blur(16px);
-      border-radius:36px;
-      padding:50px 35px;
-      max-width:94%;
-      width:100%;
-      max-height:84vh;
-      overflow-y:auto;
-      opacity:0;
-      transform:scale(0.88) translateY(80px);
-      transition:all 1.6s cubic-bezier(0.34,1.56,0.64,1);
-      box-shadow:0 40px 90px rgba(0,0,0,0.6);
-      border:1px solid rgba(167,139,250,0.4);
-    }
-    .card.visible {
-      opacity:1;
-      transform:scale(1) translateY(0);
-    }
-    .title {
-      font-family:'Pinyon Script',cursive;
-      font-size:5.5rem;
-      color:#f3e8ff;
-      margin-bottom:30px;
-      text-shadow:0 8px 25px rgba(124,58,237,0.9);
-    }
-    p {
-      font-size:1.45rem;
-      line-height:1.9;
-      margin:22px 0;
-      opacity:0;
-      transform:translateY(60px);
-      transition:all 1.2s ease;
-      color:#e9d5ff;
-      font-weight:400;
-    }
-    p.visible {
-      opacity:1;
-      transform:translateY(0);
-    }
-    .big {
-      font-family:'Great Vibes',cursive;
-      font-size:5rem;
-      color:#f3e8ff;
-      margin:60px 0 45px;
-      text-shadow:0 8px 25px rgba(217,70,239,0.8);
-      animation:heartBeat 4.5s infinite;
-    }
-    @keyframes heartBeat {
-      0%,100% { transform:scale(1); }
-      50%     { transform:scale(1.09); }
-    }
-    .buttons {
-      display:flex;
-      justify-content:center;
-      gap:60px;
-      margin:55px 0;
-      flex-wrap:wrap;
-    }
-    button {
-      font-family:'Caveat',cursive;
-      font-size:2rem;
-      padding:18px 65px;
-      border:none;
-      border-radius:70px;
-      cursor:pointer;
-      transition:all 0.5s ease;
-      box-shadow:0 15px 40px rgba(0,0,0,0.5);
-    }
-    #yes {
-      background:linear-gradient(135deg,#d946ef,#a855f7,#7c3aed);
-      color:white;
-      background-size:300%;
-      animation:gradientFlow 7s ease infinite;
-    }
-    @keyframes gradientFlow {
-      0% { background-position:0% 50%; }
-      50% { background-position:100% 50%; }
-      100% { background-position:0% 50%; }
-    }
-    #yes:hover {
-      transform:translateY(-15px) scale(1.15);
-      box-shadow:0 35px 80px rgba(217,70,239,0.9);
-    }
-    #no {
-      background:rgba(255,255,255,0.22);
-      color:#e9d5ff;
-      border:2px solid #c4b5fd;
-    }
-    #no:hover {
-      background:rgba(255,255,255,0.15);
-      transform:translateY(-10px);
-    }
-    #final {
-      font-family:'Parisienne',cursive;
-      font-size:3.2rem;
-      color:#f3e8ff;
-      margin-top:70px;
-      line-height:1.65;
-      opacity:0;
-      transform:scale(0.8) translateY(70px);
-      transition:all 2.2s cubic-bezier(0.34,1.56,0.64,1);
-    }
-    #final.visible {
-      opacity:1;
-      transform:scale(1) translateY(0);
-    }
-    .final-heart {
-      font-size:9rem;
-      color:#d946ef;
-      margin-top:60px;
-      animation:floatHeart 6s ease-in-out infinite;
-      opacity:0;
-      transition:opacity 3s ease 2s;
-    }
-    #final.visible ~ .final-heart {
-      opacity:1;
-    }
-    @keyframes floatHeart {
-      0%,100% { transform:translateY(0) rotate(0deg); }
-      50%     { transform:translateY(-40px) rotate(10deg); }
-    }
-    .falling-item {
-      position:absolute;
-      pointer-events:none;
-      animation:smoothFall linear infinite;
-      z-index:5;
-      will-change:transform,opacity;
-    }
-    @keyframes smoothFall {
-      0% { transform:translateY(-40vh) rotate(0deg) translateX(0); opacity:0; }
-      5% { opacity:var(--item-opacity); }
-      95% { opacity:var(--item-opacity); }
-      100% { transform:translateY(140vh) rotate(var(--rotate-end)) translateX(var(--drift)); opacity:0; }
-    }
-    @media (max-width:480px) {
-      .title { font-size:4.8rem; }
-      .big   { font-size:4.2rem; }
-      p      { font-size:1.3rem; }
-      button { font-size:1.9rem; padding:16px 55px; }
-      .envelope { font-size:7rem; }
-      .intro-text { font-size:2.2rem; }
-    }
-  </style>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+
+body{
+  min-height:100vh;
+  background:linear-gradient(135deg,#c084fc,#7c3aed,#4c1d95);
+  font-family:'Caveat',cursive;
+  color:#f3e8ff;
+  overflow-x:hidden;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+}
+
+/* INTRO */
+.intro{
+  position:fixed;
+  inset:0;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  background:inherit;
+  z-index:100;
+  transition:opacity 2s ease;
+}
+
+.intro.hide{
+  opacity:0;
+  pointer-events:none;
+}
+
+.envelope{
+  font-size:10rem;
+  cursor:pointer;
+  animation:pulse 3s infinite;
+  transition:transform 1.5s ease,opacity 1.5s ease;
+}
+
+@keyframes pulse{
+  0%,100%{transform:scale(1)}
+  50%{transform:scale(1.08)}
+}
+
+.envelope.open{
+  transform:scale(6) rotateX(180deg);
+  opacity:0;
+}
+
+.intro-text{
+  margin-top:30px;
+  font-family:'Parisienne',cursive;
+  font-size:3rem;
+  opacity:.95;
+}
+
+/* CARD */
+.card{
+  background:rgba(30,10,60,.75);
+  backdrop-filter:blur(16px);
+  border-radius:36px;
+  padding:50px 35px;
+  max-width:94%;
+  max-height:84vh;
+  overflow-y:auto;
+  opacity:0;
+  transform:translateY(80px) scale(.9);
+  transition:all 1.6s cubic-bezier(.34,1.56,.64,1);
+}
+
+.card.show{
+  opacity:1;
+  transform:none;
+}
+
+.title{
+  font-family:'Pinyon Script';
+  font-size:5.5rem;
+  margin-bottom:30px;
+}
+
+p{
+  font-size:1.45rem;
+  margin:22px 0;
+  opacity:0;
+  transform:translateY(40px);
+  transition:all 1s ease;
+}
+
+p.show{opacity:1;transform:none}
+
+.big{
+  font-family:'Great Vibes';
+  font-size:5rem;
+  margin:60px 0;
+  animation:heartbeat 4s infinite;
+}
+
+@keyframes heartbeat{
+  0%,100%{transform:scale(1)}
+  50%{transform:scale(1.08)}
+}
+
+.buttons{
+  display:flex;
+  gap:50px;
+  justify-content:center;
+  flex-wrap:wrap;
+}
+
+button{
+  font-family:'Caveat';
+  font-size:2rem;
+  padding:18px 65px;
+  border:none;
+  border-radius:70px;
+  cursor:pointer;
+}
+
+#yes{
+  background:linear-gradient(135deg,#d946ef,#7c3aed);
+  color:white;
+}
+
+#no{
+  background:rgba(255,255,255,.25);
+  color:#fff;
+}
+
+/* FINAL */
+#final{
+  font-family:'Parisienne';
+  font-size:3.2rem;
+  margin-top:60px;
+  opacity:0;
+  transform:translateY(40px);
+  transition:all 2s ease;
+}
+
+#final.show{opacity:1;transform:none}
+
+.final-heart{
+  font-size:9rem;
+  margin-top:40px;
+  animation:float 5s infinite;
+  opacity:0;
+}
+
+#final.show + .final-heart{opacity:1}
+
+@keyframes float{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-30px)}
+}
+
+/* FALLING */
+.fall{
+  position:fixed;
+  top:-15vh;
+  left:0;
+  pointer-events:none;
+  animation:fall linear forwards;
+}
+
+@keyframes fall{
+  from{transform:translateY(-15vh) rotate(0deg);opacity:0}
+  10%{opacity:var(--o)}
+  to{transform:translateY(120vh) rotate(var(--r));opacity:0}
+}
+</style>
 </head>
+
 <body>
 
-  <!-- INTRO -->
-  <div class="intro-screen" id="intro">
-    <div class="envelope" id="envelope">📩</div>
-    <div class="intro-text">Apasă pe plic</div>
+<div class="intro" id="intro">
+  <div class="envelope" id="env">💌</div>
+  <div class="intro-text">Ai primit o scrisoare…</div>
+</div>
+
+<div class="card" id="card">
+  <div class="title">Pentru Alexia 💜</div>
+
+  <p>Helo draga mea Alexia</p>
+  <p>Sunt eu Florin si am facut acest site special pentru tine</p>
+  <p>De cand vorbim imi faci viata mai frumoasa zilnic</p>
+  <p>Doar faptul ca esti acolo imi schimba complet starea</p>
+  <p>Te apreciez enorm pentru tot ce esti</p>
+
+  <div class="big">Vrei să fii Valentina mea</div>
+
+  <div class="buttons">
+    <button id="yes">DA 💜</button>
+    <button id="no">NU</button>
   </div>
 
-  <!-- CARD -->
-  <div class="card" id="card">
-    <div class="title">Pentru Alexia 💜</div>
+  <div id="final"></div>
+  <div class="final-heart">💜</div>
+</div>
 
-    <p>Helo draga mea Alexia</p>
-    <p>Sunt eu Florin si am facut acest site special pentru tine</p>
-    <p>Voiam sa iti spun ca in ultima perioada de cand am inceput sa vorbim chiar chiar chiar imi faci viata mai buna zilnic</p>
-    <p>Parca doar cand stiu ca stau seara cu tine in apel totul devine mult mai frumos</p>
-    <p>Apreciez enorm ca stai cu mine in fiecare seara imi asculti problemele si simt ca chiar iti pasa</p>
-    <p>Eu tin extrem de mult la tine si de fiecare data iti ascult povestile tale cu cel mai mare entuziasm posibil</p>
-    <p>Sunt atat de fericit cand te ascult incat nici nu pot explica</p>
-    <p>Mereu imi faci seara mai frumoasa si nu conteaza despre ce vorbim sau ce facem</p>
-    <p>Doar faptul ca esti acolo cu mine imi schimba complet starea</p>
-    <p>Stiu ca esti intr o situatie ciudata cu Strambu si te gandesti si la Armyn</p>
-    <p>Dar sincer parca in ultima perioada am vazut cat de draguta esti cu mine si cu toata lumea</p>
-    <p>As vrea sa ne apropiem cat mai mult daca iti doresti si tu</p>
-    <p>De aceea vreau sa iti adresez o intrebare extrem de importanta pentru mine</p>
-    <p>Daca nu vrei este complet ok te inteleg perfect si nu voi fi trist</p>
-    <p>Din ce mi ai spus pe 14 februarie nu ai nimic planificat</p>
-    <p>Asa ca voiam sa te intreb daca ai vrea sa petrecem ziua aceea impreuna</p>
-    <p>Sa facem lucruri dragute poate sa iesim prin mall sau oriunde ne simtim bine</p>
-    <p>Cel mai important pentru mine este daca TU iti doresti</p>
-    <p>Iti multumesc enorm ca ai fost langa mine si ca ai insemnat atat de mult pentru mine</p>
+<script>
+const intro=document.getElementById("intro");
+const env=document.getElementById("env");
+const card=document.getElementById("card");
+const yes=document.getElementById("yes");
+const no=document.getElementById("no");
+const final=document.getElementById("final");
 
-    <div class="big">Vrei să fii Valentina mea</div>
-
-    <div class="buttons">
-      <button id="yes">DA 💜</button>
-      <button id="no">NU</button>
-    </div>
-
-    <div id="final"></div>
-    <div class="final-heart">💜</div>
-  </div>
-
-  <script>
-    const intro = document.getElementById('intro');
-    const envelope = document.getElementById('envelope');
-    const card = document.getElementById('card');
-    const yesBtn = document.getElementById('yes');
-    const noBtn = document.getElementById('no');
-    const final = document.getElementById('final');
-
-    // CLICK pe plic
-    envelope.addEventListener('click', () => {
-      envelope.classList.add('open');
-      intro.classList.add('fade-out');
-      setTimeout(() => {
-        intro.style.display = 'none';
-        card.classList.add('visible');
-        const paragraphs = document.querySelectorAll('#card p');
-        paragraphs.forEach((p, i) => setTimeout(() => p.classList.add('visible'), i * 480));
-      }, 1200);
+env.onclick=()=>{
+  env.classList.add("open");
+  setTimeout(()=>{
+    intro.classList.add("hide");
+    card.classList.add("show");
+    document.querySelectorAll("p").forEach((p,i)=>{
+      setTimeout(()=>p.classList.add("show"),i*400);
     });
+  },1200);
+};
 
-    // BUTON NU
-    let scale = 1;
-    noBtn.onclick = () => {
-      scale += 0.35;
-      yesBtn.style.transform = `scale(${scale})`;
-      noBtn.style.transform = `scale(${Math.max(0.5, 1 / scale)})`;
-      if (scale > 3.5) {
-        noBtn.style.opacity = '0';
-        noBtn.style.pointerEvents = 'none';
-      }
-    };
+let s=1;
+no.onclick=()=>{
+  s+=.3;
+  yes.style.transform=`scale(${s})`;
+  if(s>3)no.style.display="none";
+};
 
-    // BUTON DA
-    yesBtn.onclick = () => {
-      document.querySelectorAll('#card > *:not(#final):not(.final-heart)').forEach(el => {
-        el.style.transition = 'all 1.3s ease';
-        el.style.opacity = '0';
-        el.style.transform = 'translateY(80px)';
-      });
+yes.onclick=()=>{
+  final.innerHTML="Daca ai ales DA… m-ai facut cel mai fericit 💜<br>Promit sa te pretuiesc mereu.";
+  final.classList.add("show");
+  startRain();
+};
 
-      setTimeout(() => {
-        document.querySelectorAll('#card > *:not(#final):not(.final-heart)').forEach(el => el.style.display = 'none');
+function startRain(){
+  for(let i=0;i<60;i++){
+    setTimeout(createFall,i*80);
+  }
+}
 
-        final.innerHTML = 
-          `Daca chiar ai ales DA... probabil m-ai facut cel mai fericit baiat din univers si din lumea asta 💜<br><br>` +
-          `Promit sa nu te dezamagesc niciodata.<br>` +
-          `Stiu ca poate nu sunt tipul tau clasic, dar cred ca oricine merita macar o sansa, nu?<br><br>` +
-          `Te pup cu tot dragul si abia astept sa te tin in brate. 🌸💜`;
-        final.classList.add('visible');
-        noBtn.style.display = 'none';
+function createFall(){
+  const d=document.createElement("div");
+  d.className="fall";
+  d.innerHTML=Math.random()>.3?"💜":"🐻";
+  d.style.left=Math.random()*100+"vw";
+  d.style.fontSize=(Math.random()*1.5+1.5)+"rem";
+  d.style.setProperty("--r",(Math.random()*720-360)+"deg");
+  d.style.setProperty("--o",(Math.random()*.4+.4));
+  d.style.animationDuration=(Math.random()*4+6)+"s";
+  document.body.appendChild(d);
+  setTimeout(()=>d.remove(),10000);
+}
+</script>
 
-        for(let i = 0; i < 80; i++) {
-          setTimeout(createFallingItem, i * 50);
-        }
-      }, 1300);
-    };
-
-    // EMOJI CAZATORI
-    function createFallingItem() {
-      const item = document.createElement('div');
-      const isHeart = Math.random() > 0.35;
-      item.className = 'falling-item';
-      item.innerHTML = isHeart ? '💜' : '🐻';
-      item.style.left = Math.random() * 100 + 'vw';
-      item.style.fontSize = (Math.random() * 1.2 + 1.8) + 'rem';
-      item.style.setProperty('--rotate-end', (Math.random() * 1440 - 720) + 'deg');
-      item.style.setProperty('--drift', (Math.random() * 80 - 40) + 'vw');
-      item.style.setProperty('--item-opacity', (Math.random() * 0.4 + 0.25));
-      item.style.animationDuration = (Math.random() * 8 + 8) + 's';
-      item.style.animationDelay = Math.random() * 3 + 's';
-      document.body.appendChild(item);
-      setTimeout(() => item.remove(), 20000);
-    }
-    setInterval(createFallingItem, 400);
-  </script>
 </body>
 </html>
