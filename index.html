@@ -22,7 +22,7 @@
       padding:20px;
       text-align:center;
     }
-    .start-screen {
+    .intro-screen {
       position:fixed;
       inset:0;
       display:flex;
@@ -30,36 +30,32 @@
       justify-content:center;
       align-items:center;
       z-index:20;
-      background:rgba(76,29,149,0.15);
-      backdrop-filter:blur(8px);
-      transition:opacity 3s ease, visibility 0s 3s;
-      opacity:0;
-      visibility:hidden;
-    }
-    .start-screen.visible {
+      transition:opacity 2s ease;
       opacity:1;
-      visibility:visible;
-      transition:opacity 3.5s ease-out, visibility 0s;
     }
-    .title-start {
+    .intro-screen.fade-out {
+      opacity:0;
+      pointer-events:none;
+    }
+    .title-intro {
       font-family:'Pinyon Script',cursive;
       font-size:7rem;
       color:#f3e8ff;
       text-shadow:0 12px 35px rgba(124,58,237,0.95),0 0 70px rgba(167,139,250,0.7);
-      margin-bottom:50px;
-      animation:glowPulse 5.5s infinite alternate;
-      letter-spacing:4px;
+      margin-bottom:40px;
+      animation:glowSoft 6s infinite alternate;
+      letter-spacing:3px;
     }
-    @keyframes glowPulse {
-      from { text-shadow:0 0 30px #c084fc,0 0 60px #a855f7,0 0 90px #7c3aed; }
-      to   { text-shadow:0 0 60px #c084fc,0 0 120px #a855f7,0 0 180px #7c3aed; }
+    @keyframes glowSoft {
+      from { text-shadow:0 0 20px #c084fc,0 0 40px #a855f7; }
+      to   { text-shadow:0 0 40px #c084fc,0 0 80px #a855f7; }
     }
-    .subtitle-start {
+    .subtitle-intro {
       font-family:'Parisienne',cursive;
-      font-size:3.5rem;
+      font-size:3.2rem;
       color:#e9d5ff;
-      opacity:0.94;
-      text-shadow:0 6px 18px rgba(124,58,237,0.8);
+      opacity:0.92;
+      text-shadow:0 5px 15px rgba(124,58,237,0.7);
     }
     .card {
       background:rgba(30,10,60,0.75);
@@ -75,7 +71,6 @@
       transition:all 1.6s cubic-bezier(0.34,1.56,0.64,1);
       box-shadow:0 40px 90px rgba(0,0,0,0.6);
       border:1px solid rgba(167,139,250,0.4);
-      z-index:5;
     }
     .card.visible {
       opacity:1;
@@ -219,7 +214,7 @@
 </head>
 <body>
 
-  <div class="start-screen" id="startScreen">
+  <div class="intro-screen" id="intro">
     <div class="title-start">Pentru Alexia</div>
     <div class="subtitle-start">💜 de la Florin 💜</div>
   </div>
@@ -259,14 +254,15 @@
   </div>
 
   <script>
-    // Pornim cu start-screen vizibil
-    document.getElementById('startScreen').classList.add('visible');
+    // Titlul intro apare imediat și stă 3 secunde
+    const intro = document.getElementById('intro');
+    intro.style.opacity = '1';
 
-    // După 3 secunde începe fade-out-ul titlului intro
+    // După 3 secunde începe fade-out lent
     setTimeout(() => {
-      document.getElementById('startScreen').style.opacity = '0';
+      intro.style.opacity = '0';
       setTimeout(() => {
-        document.getElementById('startScreen').classList.remove('visible');
+        intro.style.display = 'none'; // eliminăm complet după fade-out
         const card = document.getElementById('card');
         card.classList.add('visible');
 
@@ -276,7 +272,7 @@
           setTimeout(() => p.classList.add('visible'), i * 480 + 1200);
         });
       }, 2800); // timp fade-out
-    }, 3000); // timp cât stă titlul vizibil
+    }, 3000);
 
     let scale = 1;
     const noBtn = document.getElementById('no');
