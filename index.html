@@ -7,209 +7,112 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Parisienne&family=Pinyon+Script&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.0/gsap.min.js"></script>
   <style>
-    /* Envelope colors adapted to purple theme */
-    $bg: #4c1d95; /* Dark purple */
-    $tab-bg: #e9d5ff; /* Light purple */
-    $f-color: #a855f7; /* Main purple */
-    $s-color: #7c3aed; /* Secondary purple */
-    $t-color: #c084fc; /* Tertiary purple */
-    $fo-color: #d946ef; /* Accent purple */
-    $fi-color: #e0bbff; /* Light accent */
-
-    /* Mixins */
-    @mixin posAbsolute($p) {
-      width: 100%;
-      height: 100%;
-      bottom: 0;
-      left: 0;
-      @if ($p == a) {
-        position: absolute;
-      } @else if ($p == r) {
-        position: relative;
-      }
-    }
-
-    /* General styles */
     * {
-      padding: 0;
       margin: 0;
+      padding: 0;
       box-sizing: border-box;
     }
-
-    html,
     body {
-      height: 100%;
-    }
-
-    body {
-      width: 100%;
+      min-height: 100vh;
       background: linear-gradient(135deg, #c084fc 0%, #7c3aed 50%, #4c1d95 100%);
       font-family: 'Poppins', sans-serif;
-      font-size: 20px;
+      color: #f3e8ff;
+      overflow: hidden;
+      position: relative;
       display: flex;
       justify-content: center;
       align-items: center;
-      color: #f3e8ff;
-      overflow: hidden;
-
-      @media (max-height: 500px) {
-        margin: 25% 0 25% 0;
-      }
-    }
-
-    /* Envelope Styles */
-    .envelop {
-      width: 15rem;
-      height: 10rem;
-      position: absolute;
-      left: 0;
-      right: 0;
-      margin: auto;
-
-      @media (min-width: 400px) and (max-width: 600px) {
-        width: 20rem;
-        height: 15rem;
-      }
-      @media (min-width: 600px) {
-        width: 25rem;
-        height: 20rem;
-      }
-      @media (min-width: 600px) and (min-height: 600px) {
-        bottom: 20%;
-      }
-
-      &__front-paper {
-        @include posAbsolute(a);
-        border-radius: 0.7rem;
-        border: 0.35rem solid $s-color;
-        background-color: $f-color;
-        clip-path: polygon(100% 0%, 50% 70%, 0% 0%, 0% 100%, 100% 100%);
-        z-index: 300;
-      }
-
-      &__back-paper {
-        @include posAbsolute(a);
-        border-radius: 0.7rem;
-        background-color: $s-color;
-        clip-path: polygon(0% 0%, 100% 0%, 90% 100%, 0% 90%);
-        z-index: 100;
-      }
-
-      &__up-paper {
-        @include posAbsolute(r);
-        border-radius: 0.7rem;
-        background-color: $s-color;
-        z-index: 400;
-        clip-path: polygon(0% 0%, 100% 0%, 50% 81%);
-      }
-
-      &__sticker {
-        width: 100%;
-        height: 20%;
-        position: absolute;
-        margin: auto;
-        top: 30%;
-        left: 0;
-        bottom: 0;
-        right: 0;
-        z-index: 400;
-        background-image: url("https://www.freepnglogos.com/uploads/heart-png/emoji-heart-33.png");
-        background-color: $fo-color;
-        border: 0.3rem solid $fi-color;
-        background-size: 2rem;
-        background-position: center;
-
-        @media (max-width: 400px) {
-          background-size: 1.2rem;
-        }
-        @media (min-width: 600px) {
-          height: 15%;
-        }
-      }
-
-      &__false-sticker {
-        width: 20%;
-        height: 20%;
-        position: absolute;
-        margin: auto;
-        top: 30%;
-        left: 80%;
-        bottom: 0;
-        right: 0;
-        z-index: 300;
-        background-image: url("https://www.freepnglogos.com/uploads/heart-png/emoji-heart-33.png");
-        background-color: $fo-color;
-        border: 0.3rem solid $fi-color;
-        background-size: 2rem;
-        background-position: center;
-
-        @media (max-width: 400px) {
-          background-size: 1.2rem;
-        }
-        @media (min-width: 600px) {
-          height: 15%;
-        }
-      }
-
-      &__content {
-        @include posAbsolute(a);
-        z-index: 200;
-      }
-    }
-
-    .love-letter {
-      width: 100%;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
       padding: 20px;
-      overflow-y: auto;
     }
-
-    .letter-content {
-      width: 95%;
-      background-color: $tab-bg;
-      padding: 20px;
-      border-radius: 15px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-      color: #4c1d95;
-      font-size: 1.1rem;
-      line-height: 1.6;
+    .initial-screen {
+      text-align: center;
+      z-index: 10;
+      opacity: 1;
+      transition: opacity 1s ease;
+    }
+    .initial-screen.hidden {
       opacity: 0;
-      transform: translateY(50px);
-      transition: all 0.8s ease-out;
+      pointer-events: none;
     }
-
-    .letter-content.visible {
+    .title {
+      font-family: 'Pinyon Script', cursive;
+      font-size: 4rem;
+      color: #e9d5ff;
+      text-shadow: 0 8px 20px rgba(124,58,237,0.9);
+      margin-bottom: 20px;
+      animation: romanticGlow 4s ease-in-out infinite alternate;
+    }
+    @keyframes romanticGlow {
+      from { text-shadow: 0 0 15px #c084fc; transform: scale(1); }
+      to { text-shadow: 0 0 30px #c084fc; transform: scale(1.03); }
+    }
+    #reveal-button {
+      font-size: 1.5rem;
+      padding: 15px 40px;
+      background: linear-gradient(45deg, #d946ef, #a855f7);
+      color: white;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      box-shadow: 0 10px 30px rgba(168,85,247,0.6);
+      transition: transform 0.3s ease;
+    }
+    #reveal-button:hover {
+      transform: scale(1.1);
+    }
+    .card {
+      background: rgba(30, 10, 60, 0.75);
+      backdrop-filter: blur(15px);
+      border-radius: 30px;
+      padding: 40px 30px;
+      max-width: 800px;
+      width: 100%;
+      max-height: 80vh;
+      overflow-y: auto;
+      opacity: 0;
+      transform: scale(0.9);
+      transition: opacity 1s ease, transform 1s ease;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0.9);
+    }
+    .card.visible {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+    }
+    p {
+      font-size: 1.2rem;
+      line-height: 1.6;
+      margin: 12px 0;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.6s ease;
+    }
+    p.visible {
       opacity: 1;
       transform: translateY(0);
     }
-
     .big {
       font-family: 'Great Vibes', cursive;
       font-size: 3rem;
-      color: #d946ef;
+      color: #f3e8ff;
       margin: 30px 0;
-      text-shadow: 0 4px 10px rgba(217,70,239,0.6);
-      animation: pulse 2s infinite;
+      text-shadow: 0 5px 15px rgba(124,58,237,0.7);
+      animation: pulse 1.5s infinite;
     }
-
     @keyframes pulse {
       0% { transform: scale(1); }
       50% { transform: scale(1.05); }
       100% { transform: scale(1); }
     }
-
     .buttons {
       display: flex;
       justify-content: center;
       gap: 40px;
       margin: 30px 0;
     }
-
     button {
       font-size: 1.4rem;
       padding: 12px 40px;
@@ -219,26 +122,21 @@
       transition: all 0.4s ease;
       box-shadow: 0 8px 20px rgba(0,0,0,0.3);
     }
-
     #yes {
       background: linear-gradient(45deg, #d946ef, #a855f7);
       color: white;
     }
-
     #yes:hover {
       transform: scale(1.1);
       box-shadow: 0 15px 30px rgba(168,85,247,0.7);
     }
-
     #no {
       background: rgba(255,255,255,0.15);
       color: #e9d5ff;
     }
-
     #no:hover {
       background: rgba(255,255,255,0.1);
     }
-
     #final {
       font-family: 'Parisienne', cursive;
       font-size: 2rem;
@@ -248,290 +146,131 @@
       transition: opacity 1s ease;
       line-height: 1.5;
     }
-
     #final.visible {
       opacity: 1;
     }
-
-    /* Teddy Bear Styles - Adapted to Purple */
+    /* Teddy Bear */
     .teddy {
       position: absolute;
-      bottom: 10px;
-      left: 10px;
-      transform: scale(0.8);
-      filter: drop-shadow(5px 10px 15px #4c1d95);
-      z-index: 500;
+      bottom: 20px;
+      left: 20px;
+      transform: scale(0.7);
+      z-index: 5;
       animation: breathe 4s ease-in-out infinite;
     }
-
     @keyframes breathe {
-      0%, 100% { transform: scale(0.8); }
-      50% { transform: scale(0.82); }
+      0%, 100% { transform: scale(0.7); }
+      50% { transform: scale(0.72); }
     }
-
-    .head {
-      position: relative;
-      width: 85px;
-      height: 80px;
-      background-color: #a855f7; /* Purple */
-      border-radius: 50px;
-      margin-bottom: -8px;
-    }
-
-    .ear1, .ear2 {
-      position: absolute;
-      top: -5px;
+    .teddy .head, .teddy .ear1, .teddy .ear2, .teddy .body, .teddy .hand1, .teddy .hand2, .teddy .leg1, .teddy .leg2 {
       background-color: #a855f7;
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
     }
-
-    .ear1 {
-      left: -5px;
-    }
-
-    .ear2 {
-      right: -5px;
-    }
-
-    .ear-m1, .ear-m2 {
-      background-color: #e0bbff; /* Light purple */
-      width: 22px;
-      border-radius: 11px 11px 0 0;
-      height: 11px;
-      margin-top: 8px;
+    .teddy .stomach, .teddy .ear-m1, .teddy .ear-m2, .teddy .h, .teddy .l {
+      background-color: #e0bbff;
       box-shadow: inset 6px -1px 10px 0px #7c3aedbe;
     }
-
-    .ear-m1 {
-      margin-left: 4px;
-      transform: rotate(-40deg);
+    .teddy .nose {
+      background-color: #4c1d95;
     }
-
-    .ear-m2 {
-      margin-left: 14px;
-      transform: rotate(40deg);
-    }
-
-    .eye1, .eye2 {
-      position: absolute;
-      top: 20px;
-      background-color: rgb(0, 0, 0);
-      width: 16px;
-      height: 16px;
-      border-radius: 50%;
-    }
-
-    .eye1 {
-      left: 18px;
-    }
-
-    .eye2 {
-      right: 18px;
-    }
-
-    .w {
-      background-color: rgb(255, 255, 255);
-      width: 6px;
-      height: 6px;
-      margin: 4px;
-      border-radius: 50%;
-    }
-
-    .mouth-nose {
-      position: absolute;
-      bottom: 8px;
-      right: 25px;
-      width: 33px;
-      height: 33px;
-      border-radius: 50%;
-      background-color: rgb(255, 255, 255);
-      filter: drop-shadow(0 0 2px #000000af);
-    }
-
-    .nose {
-      background-color: #4c1d95; /* Dark purple */
-      width: 16px;
-      margin: 3px 0 0 8px;
-      height: 16px;
-      border-radius: 50%;
-    }
-
-    .mouth {
-      width: 12px;
-      margin: auto;
-      height: 6px;
+    .teddy .mouth {
       border-bottom: 2px #4c1d95 solid;
-      border-radius: 50%;
     }
-
-    .body {
-      position: relative;
-      background: #a855f7;
-      width: 100px;
-      height: 125px;
-      border-radius: 45%;
-    }
-
-    .stomach {
-      background: #e0bbff;
-      width: 56px;
-      height: 85px;
-      margin: 22px;
-      border-radius: 45%;
-      box-shadow: inset 2px -2px 10px 0px #7c3aedbe;
-    }
-
-    .hand1, .hand2 {
-      position: absolute;
-      top: 12px;
-      background-color: #a855f7;
-      width: 65px;
-      height: 30px;
-      border-radius: 20px 0 0 20px;
-      transform-origin: bottom right;
-    }
-
-    .hand1 {
-      left: -40px;
-      transform: rotate(-12deg);
-    }
-
-    .hand2 {
-      right: -40px;
-      border-radius: 0 20px 20px 0;
-      transform-origin: top left;
+    .teddy .hand2 {
       animation: hi 1s linear infinite;
     }
-
     @keyframes hi {
       0% { transform: rotate(-15deg); }
       50% { transform: rotate(-40deg); }
       100% { transform: rotate(-15deg); }
     }
-
-    .h {
-      background: #e0bbff;
-      width: 20px;
-      height: 20px;
-      margin: 5px;
-      border-radius: 50%;
-      box-shadow: inset 6px -1px 10px 0px #7c3aedbe;
-    }
-
-    .hand2 .h {
-      margin-left: 40px;
-    }
-
-    .leg1, .leg2 {
-      position: absolute;
-      bottom: 6px;
-      background-color: #a855f7;
-      width: 55px;
-      height: 35px;
-      border-radius: 20px 0 0 20px;
-      transform-origin: bottom right;
-    }
-
-    .leg1 {
-      left: -30px;
-      transform: rotate(-30deg);
-    }
-
-    .leg2 {
-      right: -30px;
-      border-radius: 0 20px 20px 0;
-      transform-origin: bottom left;
-      transform: rotate(30deg);
-    }
-
-    .l {
-      background: #e0bbff;
-      width: 25px;
-      height: 25px;
-      margin: 5px;
-      border-radius: 50%;
-      box-shadow: inset 6px -1px 10px 0px #7c3aedbe;
-    }
-
-    .leg2 .l {
-      margin-left: 25px;
-    }
-
-    /* Falling hearts */
+    /* Hearts from Medium tutorial, adapted to purple */
     .heart {
-      position: absolute;
-      font-size: 2rem;
-      color: #d946ef;
-      animation: fall 6s linear infinite;
       z-index: 1;
+      position: absolute;
+      pointer-events: none;
     }
-
-    @keyframes fall {
-      0% { transform: translateY(-100vh) rotate(0deg); opacity: 1; }
-      100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+    .heart:before,
+    .heart:after {
+      content: "";
+      background-color: #d946ef;
+      position: absolute;
+      height: 30px;
+      width: 45px;
+      border-radius: 15px 0px 0px 15px;
     }
-
-    /* Scissors cursor for sticker */
-    .scissors {
-      cursor: url("https://i.postimg.cc/GtLCdKxR/sisors.png"), pointer;
-
-      &:active {
-        cursor: url("https://i.postimg.cc/GtXQ7WPZ/pngwing-com.png"), pointer;
+    .heart:before {
+      transform: rotate(45deg);
+    }
+    .heart:after {
+      left: 10.5px;
+      transform: rotate(135deg);
+    }
+    @keyframes heartfade {
+      0% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+    .heart {
+      animation: heartfade 6s linear;
+    }
+    @media (max-width: 600px) {
+      .title {
+        font-size: 3rem;
       }
-    }
-
-    .cursor {
-      cursor: pointer;
+      .big {
+        font-size: 2.5rem;
+      }
+      p {
+        font-size: 1rem;
+      }
+      .card {
+        padding: 20px;
+      }
+      .teddy {
+        transform: scale(0.5);
+        bottom: 10px;
+        left: 10px;
+      }
     }
   </style>
 </head>
-<body class="scissors">
-
-  <div class="envelop">
-    <div class="envelop__front-paper"></div>
-    <div class="envelop__back-paper"></div>
-    <div class="envelop__up-paper js-up-paper"></div>
-    <div class="envelop__sticker js-sticker"></div>
-    <div class="envelop__false-sticker"></div>
-    <div class="envelop__content js-envelop-content">
-      <div class="love-letter">
-        <div class="letter-content">
-          <p>Helo draga mea Alexia</p>
-          <p>Sunt eu Florin si am facut acest site special pentru tine</p>
-          <p>Voiam sa iti spun ca in ultima perioada de cand am inceput sa vorbim chiar chiar chiar imi faci viata mai buna zilnic</p>
-          <p>Parca doar cand stiu ca stau seara cu tine in apel totul devine mult mai frumos</p>
-          <p>Apreciez enorm ca stai cu mine in fiecare seara imi asculti problemele si simt ca chiar iti pasa</p>
-          <p>Eu tin extrem de mult la tine si de fiecare data iti ascult povestile tale cu cel mai mare entuziasm posibil</p>
-          <p>Sunt atat de fericit cand te ascult incat nici nu pot explica</p>
-          <p>Mereu imi faci seara mai frumoasa si nu conteaza despre ce vorbim sau ce facem</p>
-          <p>Doar faptul ca esti acolo cu mine imi schimba complet starea</p>
-          <p>Stiu ca esti intr o situatie ciudata cu Strambu si te gandesti si la Armyn</p>
-          <p>Dar sincer parca in ultima perioada am vazut cat de draguta esti cu mine si cu toata lumea</p>
-          <p>As vrea sa ne apropiem cat mai mult daca iti doresti si tu</p>
-          <p>De aceea vreau sa iti adresez o intrebare extrem de importanta pentru mine</p>
-          <p>Daca nu vrei este complet ok te inteleg perfect si nu voi fi trist</p>
-          <p>Din ce mi ai spus pe 14 februarie nu ai nimic planificat</p>
-          <p>Asa ca voiam sa te intreb daca ai vrea sa petrecem ziua aceea impreuna</p>
-          <p>Sa facem lucruri dragute poate sa iesim prin mall sau oriunde ne simtim bine</p>
-          <p>Cel mai important pentru mine este daca TU iti doresti</p>
-          <p>Iti multumesc enorm ca ai fost langa mine si ca ai insemnat atat de mult pentru mine</p>
-
-          <div class="big">Vrei sa fii valentina mea 💜</div>
-
-          <div class="buttons">
-            <button id="yes">DA 💜</button>
-            <button id="no">NU</button>
-          </div>
-
-          <div id="final"></div>
-        </div>
-      </div>
-    </div>
+<body>
+  <div class="initial-screen" id="initial">
+    <h1 class="title">Pentru Alexia 💜</h1>
+    <button id="reveal-button">Descoperă mesajul meu 💜</button>
   </div>
 
-  <!-- Purple Teddy Bear -->
+  <div class="card" id="card">
+    <p>Helo draga mea Alexia</p>
+    <p>Sunt eu Florin si am facut acest site special pentru tine</p>
+    <p>Voiam sa iti spun ca in ultima perioada de cand am inceput sa vorbim chiar chiar chiar imi faci viata mai buna zilnic</p>
+    <p>Parca doar cand stiu ca stau seara cu tine in apel totul devine mult mai frumos</p>
+    <p>Apreciez enorm ca stai cu mine in fiecare seara imi asculti problemele si simt ca chiar iti pasa</p>
+    <p>Eu tin extrem de mult la tine si de fiecare data iti ascult povestile tale cu cel mai mare entuziasm posibil</p>
+    <p>Sunt atat de fericit cand te ascult incat nici nu pot explica</p>
+    <p>Mereu imi faci seara mai frumoasa si nu conteaza despre ce vorbim sau ce facem</p>
+    <p>Doar faptul ca esti acolo cu mine imi schimba complet starea</p>
+    <p>Stiu ca esti intr o situatie ciudata cu Strambu si te gandesti si la Armyn</p>
+    <p>Dar sincer parca in ultima perioada am vazut cat de draguta esti cu mine si cu toata lumea</p>
+    <p>As vrea sa ne apropiem cat mai mult daca iti doresti si tu</p>
+    <p>De aceea vreau sa iti adresez o intrebare extrem de importanta pentru mine</p>
+    <p>Daca nu vrei este complet ok te inteleg perfect si nu voi fi trist</p>
+    <p>Din ce mi ai spus pe 14 februarie nu ai nimic planificat</p>
+    <p>Asa ca voiam sa te intreb daca ai vrea sa petrecem ziua aceea impreuna</p>
+    <p>Sa facem lucruri dragute poate sa iesim prin mall sau oriunde ne simtim bine</p>
+    <p>Cel mai important pentru mine este daca TU iti doresti</p>
+    <p>Iti multumesc enorm ca ai fost langa mine si ca ai insemnat atat de mult pentru mine</p>
+
+    <div class="big">Vrei sa fii valentina mea 💜</div>
+
+    <div class="buttons">
+      <button id="yes">DA 💜</button>
+      <button id="no">NU</button>
+    </div>
+
+    <div id="final"></div>
+  </div>
+
+  <!-- Teddy Bear -->
   <div class="teddy">
     <div class="head">
       <div class="ear1"><div class="ear-m1"></div></div>
@@ -553,75 +292,16 @@
   </div>
 
   <script>
-    // Envelope animation logic
-    function recize_letter() {
-      const letter = document.querySelector('.letter-content');
-      if (letter.classList.contains("visible")) {
-        letter.classList.remove("visible");
-      }
-    }
-
-    function letter_ready() {
-      gsap.to(".js-envelop-content", {
-        height: "150%",
-        duration: 0.8,
-        onComplete: () => {
-          const letter = document.querySelector('.letter-content');
-          letter.classList.add('visible');
-        }
+    // Reveal logic
+    document.getElementById('reveal-button').addEventListener('click', () => {
+      document.getElementById('initial').classList.add('hidden');
+      document.getElementById('card').classList.add('visible');
+      // Reveal paragraphs sequentially
+      const paragraphs = document.querySelectorAll('.card p');
+      paragraphs.forEach((p, index) => {
+        setTimeout(() => p.classList.add('visible'), index * 300);
       });
-    }
-
-    function set_up_paper() {
-      var arr = [0, 0, 100, 0, 50, 61];
-      gsap.set(".js-up-paper", {
-        bottom: "97%",
-        rotation: 180,
-        zIndex: 200,
-        clipPath: `polygon(${arr[0]}% ${arr[1]}%, ${arr[2]}% ${arr[3]}%, ${arr[4]}% ${arr[5]}%)`,
-        onComplete: letter_ready
-      });
-    }
-
-    function envelop_transition() {
-      gsap.to(".js-up-paper", {
-        bottom: "1%",
-        duration: 0.5,
-        ease: "power2.out",
-        onComplete: set_up_paper
-      });
-      document.querySelector(".js-up-paper").removeEventListener("click", envelop_transition);
-      document.querySelector(".js-up-paper").classList.remove("cursor");
-    }
-
-    function sticker() {
-      gsap.to(".js-sticker", {
-        width: "20%",
-        left: "-80%",
-        duration: 0.5,
-        ease: "power1.in"
-      });
-      document.body.classList.remove("scissors");
-      document.querySelector(".js-sticker").removeEventListener("click", sticker);
-      document.querySelector(".js-up-paper").addEventListener("click", envelop_transition);
-      document.querySelector(".js-up-paper").classList.add("cursor");
-    }
-
-    document.querySelector(".js-sticker").addEventListener("click", sticker);
-
-    window.onresize = recize_letter;
-
-    // Falling hearts
-    function createHeart() {
-      const heart = document.createElement('div');
-      heart.className = 'heart';
-      heart.innerHTML = '💜';
-      heart.style.left = Math.random() * 100 + 'vw';
-      heart.style.animationDuration = Math.random() * 4 + 4 + 's';
-      document.body.appendChild(heart);
-      setTimeout(() => heart.remove(), 8000);
-    }
-    setInterval(createHeart, 200);
+    });
 
     // Button logic
     let scale = 1;
@@ -642,10 +322,74 @@
       final.innerHTML = 'Daca chiar ai ales da vreau sa iti spun ca probabil m ai facut cel mai fericit baiat din univers si din lumea asta<br><br>Promit sa nu te dezamagesc<br><br>Stiu ca poate nu sunt tipul tau dar cred ca oricine merita macar o sansa nu<br><br>❤️';
       final.classList.add('visible');
       noBtn.style.display = 'none';
+      // Extra hearts
       for (let i = 0; i < 50; i++) {
-        setTimeout(createHeart, i * 50);
+        setTimeout(generateHeart, i * 50, Math.random() * window.innerWidth, Math.random() * window.innerHeight, 40 + Math.random() * 20, 1 - Math.random() * 2, Math.random() * 0.8 + 0.2);
       }
     };
+
+    // Hearts logic from tutorial
+    var brd = document.createElement("DIV");
+    document.body.insertBefore(brd, document.body.firstChild);
+    const duration = 3000;
+    const speed = 0.5;
+    const cursorXOffset = 0;
+    const cursorYOffset = -5;
+    var hearts = [];
+    function generateHeart(x, y, xBound, xStart, scale) {
+      var heart = document.createElement("DIV");
+      heart.setAttribute('class', 'heart');
+      brd.appendChild(heart);
+      heart.time = duration;
+      heart.x = x;
+      heart.y = y;
+      heart.bound = xBound || 30 + Math.random() * 20;
+      heart.direction = xStart || 1 - Math.random() * 2;
+      heart.style.left = heart.x + "px";
+      heart.style.top = heart.y + "px";
+      heart.scale = scale || Math.random() * 0.8 + 0.2;
+      heart.style.transform = "scale(" + heart.scale + "," + heart.scale + ")";
+      hearts.push(heart);
+      return heart;
+    }
+    var before = Date.now();
+    var id = setInterval(frame, 5);
+    function frame() {
+      var current = Date.now();
+      var deltaTime = current - before;
+      before = current;
+      for (var i in hearts) {
+        var heart = hearts[i];
+        heart.time -= deltaTime;
+        if (heart.time > 0) {
+          heart.y -= speed;
+          heart.style.top = heart.y + "px";
+          heart.style.left = heart.x + heart.direction * heart.bound * Math.sin(heart.y * heart.scale / 30) + "px";
+        } else {
+          heart.parentNode.removeChild(heart);
+          hearts.splice(i, 1);
+        }
+      }
+    }
+    var down = false;
+    var event = null;
+    document.onmousedown = function(e) { down = true; event = e; }
+    document.onmouseup = function(e) { down = false; }
+    document.onmousemove = function(e) { event = e; }
+    document.ontouchstart = function(e) { down = true; event = e.touches[0]; }
+    document.ontouchend = function(e) { down = false; }
+    document.ontouchmove = function(e) { event = e.touches[0]; }
+    var gr = setInterval(check, 100);
+    function check() {
+      if (down) {
+        var start = 1 - Math.round(Math.random()) * 2;
+        var scale = Math.random() * Math.random() * 0.8 + 0.2;
+        var bound = 30 + Math.random() * 20;
+        generateHeart(event.pageX - brd.offsetLeft + cursorXOffset, event.pageY - brd.offsetTop + cursorYOffset, bound, start, scale);
+      }
+    }
+    // Initial hearts
+    setInterval(() => generateHeart(Math.random() * window.innerWidth, window.innerHeight, null, null, 1), 500);
   </script>
 </body>
 </html>
