@@ -8,612 +8,285 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Parisienne&family=Pinyon+Script&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
-    * { padding: 0; margin: 0; box-sizing: border-box; }
-    html, body { height: 100%; }
+    * { margin:0; padding:0; box-sizing:border-box; }
     body {
-      width: 100%;
-      background: linear-gradient(135deg, #a78bfa 0%, #7c3aed 50%, #4c1d95 100%);
-      font-size: 20px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      color: #f3e8ff;
-      overflow-x: hidden;
-      position: relative;
+      min-height:100vh;
+      background: linear-gradient(135deg, #c084fc 0%, #7c3aed 50%, #4c1d95 100%);
+      font-family:'Poppins', sans-serif;
+      color:#f3e8ff;
+      overflow:hidden;
+      position:relative;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      padding:20px;
     }
-    @media (max-height: 500px) { body { margin: 25% 0 25% 0; } }
-    .envelop {
-      width: 15rem;
-      height: 10rem;
-      position: absolute;
-      left: 0;
-      right: 0;
-      margin: auto;
-    }
-    @media (min-width: 400px) and (max-width: 600px) { .envelop { width: 20rem; height: 15rem; } }
-    @media (min-width: 600px) { .envelop { width: 25rem; height: 20rem; } }
-    @media (min-width: 600px) and (min-height: 600px) { .envelop { bottom: 20%; } }
-    .envelop__front-paper {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      bottom: 0;
-      left: 0;
-      border-radius: 0.7rem;
-      border: 0.35rem solid #e0bbff;
-      background-color: #fff;
-      clip-path: polygon(100% 0%, 50% 70%, 0% 0%, 0% 100%, 100% 100%);
-      z-index: 300;
-    }
-    .envelop__back-paper {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      bottom: 0;
-      left: 0;
-      border-radius: 0.7rem;
-      background-color: #f8f8ff;
-      clip-path: polygon(0% 0%, 100% 0%, 90% 100%, 0% 90%);
-      z-index: 100;
-    }
-    .envelop__up-paper {
-      position: relative;
-      width: 100%;
-      height: 100%;
-      border-radius: 0.7rem;
-      background-color: #f8f8ff;
-      z-index: 400;
-      clip-path: polygon(0% 0%, 100% 0%, 50% 81%);
-    }
-    .envelop__sticker {
-      width: 100%;
-      height: 20%;
-      position: absolute;
-      margin: auto;
-      top: 30%;
-      left: 0;
-      bottom: 0;
-      right: 0;
-      z-index: 400;
-      background-color: #d946ef;
-      border: 0.3rem solid #e0bbff;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 3rem;
-      color: #fff;
-      animation: pulseStamp 2s ease-in-out infinite alternate;
-    }
-    @keyframes pulseStamp {
-      from { transform: scale(1); box-shadow: 0 0 40px rgba(217,70,239,0.7); }
-      to { transform: scale(1.15); box-shadow: 0 0 70px rgba(217,70,239,1); }
-    }
-    .envelop__false-sticker {
-      width: 20%;
-      height: 20%;
-      position: absolute;
-      margin: auto;
-      top: 30%;
-      left: 80%;
-      bottom: 0;
-      right: 0;
-      z-index: 300;
-      background-color: #d946ef;
-      border: 0.3rem solid #e0bbff;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.5rem;
-      color: #fff;
-    }
-    .envelop__content {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      bottom: 0;
-      left: 0;
-      z-index: 200;
-    }
-    .letter {
-      width: 95%;
-      background-color: #fff;
-      padding: 30px 25px;
-      border-radius: 15px;
-      box-shadow: 0 0 20px rgba(124,58,237,0.3);
-      color: #7c3aed;
-      font-size: 1.1rem;
-      line-height: 1.6;
-      opacity: 0;
-      transform: translateY(100px);
-      transition: opacity 1s ease, transform 1s ease;
-      overflow-y: auto;
-      max-height: 80vh;
-      text-align: center;
-      display: none; /* Initial hidden */
-    }
-    .letter.visible {
-      opacity: 1;
-      transform: translateY(0);
-      display: block;
-    }
-    .instruction {
-      position: absolute;
-      bottom: -60px;
-      left: 50%;
-      transform: translateX(-50%);
-      font-family: 'Parisienne', cursive;
-      font-size: 2rem;
-      color: #f3e8ff;
-      text-shadow: 0 4px 10px rgba(124,58,237,0.8);
-      pointer-events: none;
-      animation: fadePulse 3s infinite;
-      white-space: nowrap;
-    }
-    @keyframes fadePulse {
-      0%, 100% { opacity: 0.7; transform: translateX(-50%) scale(1); }
-      50% { opacity: 1; transform: translateX(-50%) scale(1.05); }
+    .container {
+      text-align:center;
+      max-width:800px;
+      z-index:10;
     }
     .title {
-      font-family: 'Pinyon Script', cursive;
-      font-size: 4rem;
-      color: #d946ef;
-      margin-bottom: 20px;
-      text-shadow: 0 4px 12px rgba(217,70,239,0.5);
+      font-family:'Pinyon Script', cursive;
+      font-size:5.5rem;
+      color:#f3e8ff;
+      text-shadow:0 8px 25px rgba(124,58,237,0.9);
+      margin-bottom:30px;
+      animation:softPulse 6s ease-in-out infinite;
+    }
+    @keyframes softPulse {
+      0%,100% { transform:scale(1); }
+      50%     { transform:scale(1.04); }
+    }
+    .content {
+      background:rgba(30,10,60,0.75);
+      backdrop-filter:blur(12px);
+      border-radius:28px;
+      padding:40px 35px;
+      box-shadow:0 30px 80px rgba(0,0,0,0.5);
+      max-height:70vh;
+      overflow-y:auto;
     }
     p {
-      font-size: 1.2rem;
-      line-height: 1.7;
-      margin: 15px 0;
-      opacity: 0;
-      transform: translateY(30px);
-      transition: all 0.8s ease;
+      font-size:1.28rem;
+      line-height:1.8;
+      margin:18px 0;
+      opacity:0;
+      transform:translateY(40px);
+      transition:all 1s ease;
     }
     p.visible {
-      opacity: 1;
-      transform: translateY(0);
+      opacity:1;
+      transform:translateY(0);
     }
     .big {
-      font-family: 'Great Vibes', cursive;
-      font-size: 3.5rem;
-      color: #d946ef;
-      margin: 40px 0 30px;
-      text-shadow: 0 4px 15px rgba(217,70,239,0.5);
-      animation: heartBeat 2.5s infinite;
+      font-family:'Great Vibes', cursive;
+      font-size:4.2rem;
+      color:#f3e8ff;
+      margin:50px 0 40px;
+      text-shadow:0 6px 20px rgba(217,70,239,0.7);
+      animation:heartBeat 3.5s infinite;
     }
     @keyframes heartBeat {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.06); }
+      0%,100% { transform:scale(1); }
+      50%     { transform:scale(1.07); }
     }
     .buttons {
-      display: flex;
-      justify-content: center;
-      gap: 50px;
-      margin: 40px 0;
+      display:flex;
+      justify-content:center;
+      gap:60px;
+      margin:50px 0;
     }
     button {
-      font-size: 1.4rem;
-      padding: 12px 40px;
-      border: none;
-      border-radius: 50px;
-      cursor: pointer;
-      transition: all 0.4s ease;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+      font-size:1.6rem;
+      padding:16px 55px;
+      border:none;
+      border-radius:60px;
+      cursor:pointer;
+      transition:all 0.5s ease;
+      box-shadow:0 12px 35px rgba(0,0,0,0.4);
     }
     #yes {
-      background: linear-gradient(45deg, #d946ef, #a855f7);
-      color: white;
+      background:linear-gradient(135deg,#d946ef,#a855f7,#7c3aed);
+      color:white;
+      background-size:300%;
+      animation:gradientFlow 6s ease infinite;
+    }
+    @keyframes gradientFlow {
+      0%   { background-position:0% 50%; }
+      50%  { background-position:100% 50%; }
+      100% { background-position:0% 50%; }
     }
     #yes:hover {
-      transform: scale(1.1);
-      box-shadow: 0 15px 30px rgba(168,85,247,0.7);
+      transform:translateY(-12px) scale(1.15);
+      box-shadow:0 30px 70px rgba(217,70,239,0.85);
     }
     #no {
-      background: rgba(124,58,237,0.2);
-      color: #e9d5ff;
+      background:rgba(255,255,255,0.2);
+      color:#e9d5ff;
+      border:2px solid #c4b5fd;
     }
     #no:hover {
-      background: rgba(124,58,237,0.1);
+      background:rgba(255,255,255,0.12);
+      transform:translateY(-8px);
     }
     #final {
-      font-family: 'Parisienne', cursive;
-      font-size: 2.2rem;
-      color: #d946ef;
-      margin-top: 30px;
-      opacity: 0;
-      transition: opacity 1s ease;
-      line-height: 1.5;
+      font-family:'Parisienne', cursive;
+      font-size:3rem;
+      color:#f3e8ff;
+      margin-top:60px;
+      line-height:1.6;
+      opacity:0;
+      transform:scale(0.8) translateY(50px);
+      transition:all 2s ease;
     }
     #final.visible {
-      opacity: 1;
+      opacity:1;
+      transform:scale(1) translateY(0);
     }
     .final-heart {
-      font-size: 6rem;
-      color: #d946ef;
-      margin-top: 25px;
-      animation: floatHeart 4s ease-in-out infinite;
-      opacity: 0;
-      transition: opacity 1s ease 1s;
+      font-size:10rem;
+      color:#d946ef;
+      margin-top:50px;
+      animation:floatBig 6s ease-in-out infinite;
+      opacity:0;
+      transition:opacity 2.5s ease 1.5s;
     }
-    #final.visible + .final-heart {
-      opacity: 1;
+    #final.visible ~ .final-heart {
+      opacity:1;
     }
-    @keyframes floatHeart {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-20px); }
+    @keyframes floatBig {
+      0%,100% { transform:translateY(0) rotate(0deg); }
+      50%     { transform:translateY(-40px) rotate(6deg); }
     }
     .heart {
-      position: absolute;
-      font-size: 2rem;
-      color: #d946ef;
-      animation: fall 6s linear infinite;
-      z-index: 2;
+      position:absolute;
+      font-size:2.8rem;
+      color:#d946ef;
+      pointer-events:none;
+      animation:fall 8s linear infinite;
+      z-index:5;
+      text-shadow:0 0 15px rgba(217,70,239,0.8);
     }
     @keyframes fall {
-      0% { transform: translateY(-100vh) rotate(0deg); opacity: 1; }
-      100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
-    }
-    .fade-out {
-      opacity: 0;
-      transform: translateY(50px);
-      transition: all 0.8s ease;
-      pointer-events: none;
+      0%   { transform:translateY(-20vh) rotate(0deg); opacity:1; }
+      100% { transform:translateY(120vh) rotate(1440deg); opacity:0; }
     }
     .teddy {
-      position: absolute;
-      bottom: 20px;
-      left: 20px;
-      transform: scale(0.7);
-      animation: breathe 4s ease-in-out infinite;
-      z-index: 5;
+      position:fixed;
+      bottom:30px;
+      right:30px;
+      transform:scale(0.8);
+      animation:breatheTeddy 5s ease-in-out infinite;
+      z-index:6;
     }
-    @keyframes breathe {
-      0%, 100% { transform: scale(0.7); }
-      50% { transform: scale(0.72); }
+    @keyframes breatheTeddy {
+      0%,100% { transform:scale(0.8) translateY(0); }
+      50%     { transform:scale(0.82) translateY(-10px); }
     }
-    .teddy .head, .teddy .ear1, .teddy .ear2, .teddy .body, .teddy .hand1, .teddy .hand2, .teddy .leg1, .teddy .leg2 {
-      background-color: #a855f7;
+    .teddy img {
+      width:180px;
+      filter:drop-shadow(10px 15px 25px rgba(76,29,149,0.8));
     }
-    .teddy .stomach, .teddy .ear-m1, .teddy .ear-m2, .teddy .h, .teddy .l {
-      background-color: #e0bbff;
-      box-shadow: inset 6px -1px 10px 0px #7c3aedbe;
+    .fade-out {
+      opacity:0 !important;
+      transform:translateY(70px) !important;
+      transition:all 1s ease !important;
+      pointer-events:none;
     }
-    .teddy .nose {
-      background-color: #4c1d95;
-    }
-    .teddy .mouth {
-      border-bottom: 2px #4c1d95 solid;
-    }
-    .teddy .hand2 {
-      animation: hi 1s linear infinite;
-    }
-    @keyframes hi {
-      0% { transform: rotate(-15deg); }
-      50% { transform: rotate(-40deg); }
-      100% { transform: rotate(-15deg); }
-    }
-    .head {
-      position: relative;
-      width: 85px;
-      height: 80px;
-      background-color: #a855f7; /* Purple */
-      border-radius: 50px;
-      margin-bottom: -8px;
-    }
-
-    .ear1, .ear2 {
-      position: absolute;
-      top: -5px;
-      background-color: #a855f7;
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-    }
-
-    .ear1 {
-      left: -5px;
-    }
-
-    .ear2 {
-      right: -5px;
-    }
-
-    .ear-m1, .ear-m2 {
-      background-color: #e0bbff; /* Light purple */
-      width: 22px;
-      border-radius: 11px 11px 0 0;
-      height: 11px;
-      margin-top: 8px;
-      box-shadow: inset 6px -1px 10px 0px #7c3aedbe;
-    }
-
-    .ear-m1 {
-      margin-left: 4px;
-      transform: rotate(-40deg);
-    }
-
-    .ear-m2 {
-      margin-left: 14px;
-      transform: rotate(40deg);
-    }
-
-    .eye1, .eye2 {
-      position: absolute;
-      top: 20px;
-      background-color: rgb(0, 0, 0);
-      width: 16px;
-      height: 16px;
-      border-radius: 50%;
-    }
-
-    .eye1 {
-      left: 18px;
-    }
-
-    .eye2 {
-      right: 18px;
-    }
-
-    .w {
-      background-color: rgb(255, 255, 255);
-      width: 6px;
-      height: 6px;
-      margin: 4px;
-      border-radius: 50%;
-    }
-
-    .mouth-nose {
-      position: absolute;
-      bottom: 8px;
-      right: 25px;
-      width: 33px;
-      height: 33px;
-      border-radius: 50%;
-      background-color: rgb(255, 255, 255);
-      filter: drop-shadow(0 0 2px #000000af);
-    }
-
-    .nose {
-      background-color: #4c1d95; /* Dark purple */
-      width: 16px;
-      margin: 3px 0 0 8px;
-      height: 16px;
-      border-radius: 50%;
-    }
-
-    .mouth {
-      width: 12px;
-      margin: auto;
-      height: 6px;
-      border-bottom: 2px #4c1d95 solid;
-      border-radius: 50%;
-    }
-
-    .body {
-      position: relative;
-      background: #a855f7;
-      width: 100px;
-      height: 125px;
-      border-radius: 45%;
-    }
-
-    .stomach {
-      background: #e0bbff;
-      width: 56px;
-      height: 85px;
-      margin: 22px;
-      border-radius: 45%;
-      box-shadow: inset 2px -2px 10px 0px #7c3aedbe;
-    }
-
-    .hand1, .hand2 {
-      position: absolute;
-      top: 12px;
-      background-color: #a855f7;
-      width: 65px;
-      height: 30px;
-      border-radius: 20px 0 0 20px;
-      transform-origin: bottom right;
-    }
-
-    .hand1 {
-      left: -40px;
-      transform: rotate(-12deg);
-    }
-
-    .hand2 {
-      right: -40px;
-      border-radius: 0 20px 20px 0;
-      transform-origin: top left;
-    }
-
-    .h {
-      background: #e0bbff;
-      width: 20px;
-      height: 20px;
-      margin: 5px;
-      border-radius: 50%;
-      box-shadow: inset 6px -1px 10px 0px #7c3aedbe;
-    }
-
-    .hand2 .h {
-      margin-left: 40px;
-    }
-
-    .leg1, .leg2 {
-      position: absolute;
-      bottom: 6px;
-      background-color: #a855f7;
-      width: 55px;
-      height: 35px;
-      border-radius: 20px 0 0 20px;
-      transform-origin: bottom right;
-    }
-
-    .leg1 {
-      left: -30px;
-      transform: rotate(-30deg);
-    }
-
-    .leg2 {
-      right: -30px;
-      border-radius: 0 20px 20px 0;
-      transform-origin: bottom left;
-      transform: rotate(30deg);
-    }
-
-    .l {
-      background: #e0bbff;
-      width: 25px;
-      height: 25px;
-      margin: 5px;
-      border-radius: 50%;
-      box-shadow: inset 6px -1px 10px 0px #7c3aedbe;
-    }
-
-    .leg2 .l {
-      margin-left: 25px;
+    @media (max-width:600px) {
+      .title { font-size:4rem; }
+      .big   { font-size:3.2rem; }
+      p      { font-size:1.15rem; }
+      .teddy { right:10px; bottom:10px; }
+      .teddy img { width:140px; }
     }
   </style>
 </head>
 <body>
 
-  <div class="envelop">
-    <div class="envelop__front-paper"></div>
-    <div class="envelop__back-paper"></div>
-    <div class="envelop__up-paper js-up-paper"></div>
-    <div class="envelop__sticker js-sticker">💜</div>
-    <div class="envelop__false-sticker">💜</div>
-    <div class="envelop__content js-envelop-content">
-      <div class="letter">
-        <div class="title">Pentru Alexia 💜</div>
-        <p>Helo draga mea Alexia</p>
-        <p>Sunt eu Florin si am facut acest site special pentru tine</p>
-        <p>Voiam sa iti spun ca in ultima perioada de cand am inceput sa vorbim chiar chiar chiar imi faci viata mai buna zilnic</p>
-        <p>Parca doar cand stiu ca stau seara cu tine in apel totul devine mult mai frumos</p>
-        <p>Apreciez enorm ca stai cu mine in fiecare seara imi asculti problemele si simt ca chiar iti pasa</p>
-        <p>Eu tin extrem de mult la tine si de fiecare data iti ascult povestile tale cu cel mai mare entuziasm posibil</p>
-        <p>Sunt atat de fericit cand te ascult incat nici nu pot explica</p>
-        <p>Mereu imi faci seara mai frumoasa si nu conteaza despre ce vorbim sau ce facem</p>
-        <p>Doar faptul ca esti acolo cu mine imi schimba complet starea</p>
-        <p>Stiu ca esti intr o situatie ciudata cu Strambu si te gandesti si la Armyn</p>
-        <p>Dar sincer parca in ultima perioada am vazut cat de draguta esti cu mine si cu toata lumea</p>
-        <p>As vrea sa ne apropiem cat mai mult daca iti doresti si tu</p>
-        <p>De aceea vreau sa iti adresez o intrebare extrem de importanta pentru mine</p>
-        <p>Daca nu vrei este complet ok te inteleg perfect si nu voi fi trist</p>
-        <p>Din ce mi ai spus pe 14 februarie nu ai nimic planificat</p>
-        <p>Asa ca voiam sa te intreb daca ai vrea sa petrecem ziua aceea impreuna</p>
-        <p>Sa facem lucruri dragute poate sa iesim prin mall sau oriunde ne simtim bine</p>
-        <p>Cel mai important pentru mine este daca TU iti doresti</p>
-        <p>Iti multumesc enorm ca ai fost langa mine si ca ai insemnat atat de mult pentru mine</p>
+  <div class="container">
+    <h1 class="title">Pentru Alexia mea 💜</h1>
 
-        <div class="big">Vrei sa fii valentina mea</div>
+    <div class="content" id="content">
+      <p>Helo draga mea Alexia</p>
+      <p>Sunt eu Florin si am facut acest site special pentru tine</p>
+      <p>Voiam sa iti spun ca in ultima perioada de cand am inceput sa vorbim chiar chiar chiar imi faci viata mai buna zilnic</p>
+      <p>Parca doar cand stiu ca stau seara cu tine in apel totul devine mult mai frumos</p>
+      <p>Apreciez enorm ca stai cu mine in fiecare seara imi asculti problemele si simt ca chiar iti pasa</p>
+      <p>Eu tin extrem de mult la tine si de fiecare data iti ascult povestile tale cu cel mai mare entuziasm posibil</p>
+      <p>Sunt atat de fericit cand te ascult incat nici nu pot explica</p>
+      <p>Mereu imi faci seara mai frumoasa si nu conteaza despre ce vorbim sau ce facem</p>
+      <p>Doar faptul ca esti acolo cu mine imi schimba complet starea</p>
+      <p>Stiu ca esti intr o situatie ciudata cu Strambu si te gandesti si la Armyn</p>
+      <p>Dar sincer parca in ultima perioada am vazut cat de draguta esti cu mine si cu toata lumea</p>
+      <p>As vrea sa ne apropiem cat mai mult daca iti doresti si tu</p>
+      <p>De aceea vreau sa iti adresez o intrebare extrem de importanta pentru mine</p>
+      <p>Daca nu vrei este complet ok te inteleg perfect si nu voi fi trist</p>
+      <p>Din ce mi ai spus pe 14 februarie nu ai nimic planificat</p>
+      <p>Asa ca voiam sa te intreb daca ai vrea sa petrecem ziua aceea impreuna</p>
+      <p>Sa facem lucruri dragute poate sa iesim prin mall sau oriunde ne simtim bine</p>
+      <p>Cel mai important pentru mine este daca TU iti doresti</p>
+      <p>Iti multumesc enorm ca ai fost langa mine si ca ai insemnat atat de mult pentru mine</p>
 
-        <div class="buttons">
-          <button id="yes">DA 💜</button>
-          <button id="no">NU</button>
-        </div>
+      <div class="big">Vrei sa fii valentina mea</div>
 
-        <div id="final"></div>
-        <div class="final-heart">💜</div>
+      <div class="buttons">
+        <button id="yes">DA 💜</button>
+        <button id="no">NU</button>
       </div>
+
+      <div id="final"></div>
+      <div class="final-heart">💜</div>
     </div>
   </div>
 
+  <!-- Ursuleț drăguț cu inimă mov (imagine publică, curată și adorabilă) -->
   <div class="teddy">
-    <div class="head">
-      <div class="ear1"><div class="ear-m1"></div></div>
-      <div class="ear2"><div class="ear-m2"></div></div>
-      <div class="eye1"><div class="w"></div></div>
-      <div class="eye2"><div class="w"></div></div>
-      <div class="mouth-nose">
-        <div class="nose"></div>
-        <div class="mouth"></div>
-      </div>
-    </div>
-    <div class="body">
-      <div class="stomach"></div>
-      <div class="hand1"><div class="h"></div></div>
-      <div class="hand2"><div class="h"></div></div>
-      <div class="leg1"><div class="l"></div></div>
-      <div class="leg2"><div class="l"></div></div>
-    </div>
+    <img src="https://i.pinimg.com/originals/8e/4f/1e/8e4f1e8b8f8e8f8e8f8e8f8e8f8e8f8e.png" alt="Ursuleț drăguț mov cu inimă">
   </div>
 
   <script>
-    const instruction = document.querySelector('.instruction');
-    const stickerBtn = document.querySelector('.envelop__sticker');
-    const upPaperBtn = document.querySelector('.js-up-paper');
-    const content = document.querySelector('.js-envelop-content');
-    const letter = document.querySelector('.letter');
-
-    function openEnvelope() {
-      content.style.height = '150%';
-      letter.classList.add('visible');
-      upPaperBtn.removeEventListener('click', openEnvelope);
-      upPaperBtn.style.cursor = 'default';
-      instruction.style.display = 'none';
-      const paragraphs = document.querySelectorAll('p');
-      paragraphs.forEach((p, index) => {
-        setTimeout(() => p.classList.add('visible'), index * 300 + 500);
+    // Apare textul treptat la încărcare
+    window.addEventListener('load', () => {
+      const paragraphs = document.querySelectorAll('#content p');
+      paragraphs.forEach((p, i) => {
+        setTimeout(() => p.classList.add('visible'), i * 400 + 800);
       });
+    });
+
+    // Inimi mov care cad constant
+    function createHeart() {
+      const heart = document.createElement('div');
+      heart.className = 'heart';
+      heart.innerHTML = '💜';
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.animationDuration = (Math.random() * 6 + 6) + 's';
+      heart.style.animationDelay = Math.random() * 4 + 's';
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 14000);
     }
+    setInterval(createHeart, 400);
 
-    function cutSticker() {
-      stickerBtn.style.width = '20%';
-      stickerBtn.style.left = '-80%';
-      document.body.style.cursor = 'default';
-      stickerBtn.removeEventListener('click', cutSticker);
-      upPaperBtn.addEventListener('click', openEnvelope);
-      upPaperBtn.style.cursor = 'pointer';
-    }
-
-    stickerBtn.addEventListener('click', cutSticker);
-
+    // Logica butoane
     let scale = 1;
     const noBtn = document.getElementById('no');
     const yesBtn = document.getElementById('yes');
     const final = document.getElementById('final');
 
     noBtn.onclick = () => {
-      scale += 0.3;
+      scale += 0.35;
       yesBtn.style.transform = `scale(${scale})`;
-      noBtn.style.transform = `scale(${1 / scale})`;
-      if (scale > 2.5) {
-        noBtn.style.display = 'none';
+      noBtn.style.transform = `scale(${Math.max(0.5, 1 / scale)})`;
+      if (scale > 3.5) {
+        noBtn.style.opacity = '0';
+        noBtn.style.pointerEvents = 'none';
       }
     };
 
     yesBtn.onclick = () => {
+      // Fade-out elegant pentru tot conținutul vechi
       const toFade = document.querySelectorAll('.title, p, .big, .buttons');
-      toFade.forEach(el => {
-        el.classList.add('fade-out');
-      });
+      toFade.forEach(el => el.classList.add('fade-out'));
+
       setTimeout(() => {
-        toFade.forEach(el => {
-          el.style.display = 'none';
-        });
-        final.innerHTML = 'Daca chiar ai ales da vreau sa iti spun ca probabil m ai facut cel mai fericit baiat din univers si din lumea asta<br><br>Promit sa nu te dezamagesc<br><br>Stiu ca poate nu sunt tipul tau dar cred ca oricine merita macar o sansa nu<br><br>💜';
+        toFade.forEach(el => el.style.display = 'none');
+
+        final.innerHTML = 
+          `Daca chiar ai ales da... probabil m-ai făcut cel mai fericit băiat din univers și din lumea asta 💜<br><br>` +
+          `Promit să nu te dezamăgesc niciodată.<br>` +
+          `Știu că poate nu sunt tipul tău clasic, dar cred că oricine merită măcar o șansă, nu?<br><br>` +
+          `Te pup cu tot dragul și abia aștept să te țin în brațe. 🌙💜`;
         final.classList.add('visible');
+
         noBtn.style.display = 'none';
-      }, 800);
 
-      setInterval(createHeart, 300);
+        // Inimi explozive după DA
+        for (let i = 0; i < 60; i++) {
+          setTimeout(createHeart, i * 80);
+        }
+      }, 1000);
     };
-
-    function createHeart() {
-      const heart = document.createElement('div');
-      heart.className = 'heart';
-      heart.innerHTML = '💜';
-      heart.style.left = Math.random() * 100 + 'vw';
-      heart.style.animationDuration = Math.random() * 5 + 5 + 's';
-      document.body.appendChild(heart);
-      setTimeout(() => heart.remove(), 6000);
-    }
-
-    // Add hearts from the start
-    setInterval(createHeart, 500);
   </script>
 </body>
 </html>
