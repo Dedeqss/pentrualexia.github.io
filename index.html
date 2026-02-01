@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pentru Alexia ❤️</title>
+  <title>Pentru Alexia 💜</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
   <style>
     * {
       margin: 0;
@@ -17,58 +17,89 @@
       min-height: 100vh;
       background: linear-gradient(135deg, #c084fc 0%, #7c3aed 50%, #4c1d95 100%);
       font-family: 'Poppins', sans-serif;
-      color: #fff;
-      overflow-x: hidden;
+      color: #f3e8ff;
+      overflow: hidden;
       position: relative;
-      padding: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
-    .stars {
-      position: fixed;
+    .envelope {
+      position: relative;
+      width: 400px;
+      height: 250px;
+      background: #a855f7;
+      border-radius: 10px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+      cursor: pointer;
+      transition: all 0.5s ease;
+    }
+    .envelope::before {
+      content: '';
+      position: absolute;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      background: transparent url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPgo8Y2lyY2xlIGN4PSIyMCUiIGN5PSIyMCUiIHI9IjIiIGZpbGw9IndoaXRlIiBvcGFjaXR5PSIwLjgiLz4KPGNpcmNsZSBjeD0iNjAlIiBjeT0iMTAlIiByPSIxIiBmaWxsPSJ3aGl0ZSIgb3BhY2l0eT0iMC42Ii8+CjxjaXJjbGUgY3g9IjQwJSIgY3k9IjgwJSIgcj0iMS41IiBmaWxsPSJ3aGl0ZSIgb3BhY2l0eT0iMC43Ii8+CiA8Y2lyY2xlIGN4PSI4MCUiIGN5PSI1MCUiIHI9IjIiIGZpbGw9IndoaXRlIiBvcGFjaXR5PSIwLjkiLz4KPGNpcmNsZSBjeD0iMTAlIiBjeT0iNzAlIiByPSIxIiBmaWxsPSJ3aGl0ZSIgb3BhY2l0eT0iMC41Ii8+CiA8Y2lyY2xlIGN4PSI5MCUiIGN5PSIyMCUiIHI9IjEuNSIgZmlsbD0id2hpdGUiIG9wYWNpdHk9IjAuNyIvPgo8Y2lyY2xlIGN4PSI1MCUiIGN5PSI2MCUiIHI9IjEiIGZpbGw9IndoaXRlIiBvcGFjaXR5PSIwLjgiLz4KPC9zdmc+') repeat;
-      animation: twinkle 5s infinite alternate;
-      pointer-events: none;
-      z-index: 1;
+      background: #c084fc;
+      clip-path: polygon(0 0, 100% 0, 50% 50%);
+      transition: all 0.5s ease;
     }
-    @keyframes twinkle {
-      0% { opacity: 0.6; }
-      100% { opacity: 1; }
+    .envelope.open::before {
+      transform: rotate(180deg);
+    }
+    .envelope .front {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-family: 'Dancing Script', cursive;
+      font-size: 3rem;
+      color: #fff;
+      text-shadow: 0 4px 10px rgba(124,58,237,0.8);
     }
     .card {
+      position: absolute;
+      top: 50px;
+      left: 50%;
+      transform: translateX(-50%) scale(0);
+      width: 90vw;
       max-width: 800px;
-      margin: 0 auto;
-      padding: 40px;
-      background: rgba(30, 10, 60, 0.7);
-      backdrop-filter: blur(15px);
-      border-radius: 40px;
-      box-shadow: 0 40px 80px rgba(0,0,0,0.4);
-      position: relative;
-      z-index: 10;
-      overflow: hidden;
+      background: rgba(30,10,60,0.8);
+      backdrop-filter: blur(20px);
+      border-radius: 30px;
+      padding: 50px 40px;
+      text-align: center;
+      opacity: 0;
+      transition: all 1s ease 0.5s;
+      overflow-y: auto;
+      max-height: 80vh;
+      box-shadow: 0 30px 60px rgba(0,0,0,0.6);
+    }
+    .envelope.open + .card {
+      transform: translateX(-50%) scale(1);
+      opacity: 1;
     }
     .title {
       font-family: 'Dancing Script', cursive;
-      font-size: 4rem;
+      font-size: 4.5rem;
       color: #f3e8ff;
       text-shadow: 0 6px 12px rgba(124,58,237,0.8);
       margin-bottom: 30px;
-      animation: glow 3s ease-in-out infinite alternate;
+      animation: glow 2s ease-in-out infinite alternate;
     }
     @keyframes glow {
       from { text-shadow: 0 0 10px #c084fc, 0 0 20px #7c3aed; }
       to { text-shadow: 0 0 20px #c084fc, 0 0 40px #7c3aed; }
     }
     p {
-      font-size: 1.3rem;
-      line-height: 1.7;
-      margin: 15px 0;
+      font-size: 1.2rem;
+      line-height: 1.6;
+      margin: 12px 0;
       color: #e9d5ff;
       opacity: 0;
       transform: translateY(20px);
-      transition: all 0.8s ease-out;
+      transition: all 0.6s ease;
     }
     p.visible {
       opacity: 1;
@@ -76,12 +107,12 @@
     }
     .big {
       font-family: 'Dancing Script', cursive;
-      font-size: 3.5rem;
+      font-size: 3rem;
       font-weight: bold;
       color: #f3e8ff;
-      margin: 40px 0;
+      margin: 40px 0 30px;
       text-shadow: 0 5px 15px rgba(124,58,237,0.7);
-      animation: pulse 2s infinite;
+      animation: pulse 1.5s infinite;
     }
     @keyframes pulse {
       0% { transform: scale(1); }
@@ -91,17 +122,17 @@
     .buttons {
       display: flex;
       justify-content: center;
-      gap: 50px;
-      margin: 40px 0;
+      gap: 40px;
+      margin: 30px 0;
     }
     button {
-      font-size: 1.6rem;
-      padding: 15px 50px;
+      font-size: 1.4rem;
+      padding: 12px 40px;
       border: none;
       border-radius: 50px;
       cursor: pointer;
       transition: all 0.4s ease;
-      box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
     }
     #yes {
       background: linear-gradient(45deg, #d946ef, #a855f7);
@@ -112,89 +143,114 @@
       box-shadow: 0 15px 30px rgba(168,85,247,0.7);
     }
     #no {
-      background: rgba(255,255,255,0.2);
+      background: rgba(255,255,255,0.15);
       color: #e9d5ff;
     }
     #no:hover {
       background: rgba(255,255,255,0.1);
     }
     #final {
-      font-size: 1.8rem;
+      font-family: 'Dancing Script', cursive;
+      font-size: 2rem;
       color: #f3e8ff;
       margin-top: 30px;
       opacity: 0;
       transition: opacity 1s ease;
-      line-height: 1.6;
+      line-height: 1.5;
     }
     #final.visible {
       opacity: 1;
     }
+    /* Teddy Bear CSS from adapted CodePen */
     .teddy {
       position: absolute;
+      bottom: 20px;
+      left: 20px;
+      transform: scale(0.8);
+      filter: drop-shadow(5px 10px 15px #4c1d95);
       z-index: 5;
-      animation: bounce 3s infinite alternate;
-      width: 150px;
     }
-    .teddy1 {
-      top: 10%;
-      left: -100px;
-      animation-delay: 0s;
+    .teddy .head, .teddy .ear1, .teddy .ear2, .teddy .body, .teddy .hand1, .teddy .hand2, .teddy .leg1, .teddy .leg2 {
+      background-color: #a855f7; /* Purple */
     }
-    .teddy2 {
-      bottom: 15%;
-      right: -100px;
-      animation-delay: 1s;
+    .teddy .stomach, .teddy .ear-m1, .teddy .ear-m2, .teddy .h, .teddy .l {
+      background-color: #e0bbff; /* Light purple */
+      box-shadow: inset 6px -1px 10px 0px #7c3aedbe;
     }
-    .teddy3 {
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 200px;
-      opacity: 0.8;
-      animation: rotate 10s linear infinite;
+    .teddy .nose {
+      background-color: #4c1d95; /* Dark purple */
     }
-    @keyframes bounce {
-      from { transform: translateY(0); }
-      to { transform: translateY(-20px); }
+    .teddy .mouth {
+      border-bottom: 2px #4c1d95 solid;
     }
-    @keyframes rotate {
-      from { transform: rotate(0deg); }
-      to { transform: rotate(360deg); }
+    /* Add breathing animation */
+    @keyframes breathe {
+      0%, 100% { transform: scale(0.8); }
+      50% { transform: scale(0.82); }
     }
+    .teddy {
+      animation: breathe 4s ease-in-out infinite;
+    }
+    .teddy .hand2 {
+      animation: hi 1s linear infinite;
+    }
+    @keyframes hi {
+      0% { transform: rotate(-15deg); }
+      50% { transform: rotate(-40deg); }
+      100% { transform: rotate(-15deg); }
+    }
+    /* Falling Hearts */
     .heart {
-      position: fixed;
+      position: absolute;
       font-size: 2rem;
       color: #d946ef;
-      animation: floatHeart 8s linear infinite;
-      z-index: 2;
+      animation: fall 6s linear infinite;
+      z-index: 1;
     }
-    @keyframes floatHeart {
-      0% { transform: translateY(100vh) rotate(0deg); opacity: 1; }
-      100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+    @keyframes fall {
+      0% { transform: translateY(-100vh) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
     }
+    /* Confetti */
     .confetti {
-      position: fixed;
+      position: absolute;
       width: 10px;
       height: 10px;
       background: #d946ef;
-      animation: confettiFall 5s linear infinite;
+      animation: confettiFall 4s linear infinite;
       z-index: 3;
     }
     @keyframes confettiFall {
       0% { transform: translateY(-100vh) rotate(0deg); opacity: 1; }
       100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
     }
+    /* Stars background */
+    .stars {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: transparent url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxjaXJjbGUgY3g9IjIwJSIgY3k9IjIwJSIgcj0iMiIgZmlsbD0id2hpdGUiIG9wYWNpdHk9IjAuOCIvPjxjaXJjbGUgY3g9IjYwJSIgY3k9IjEwJSIgcj0iMSIgZmlsbD0id2hpdGUiIG9wYWNpdHk9IjAuNiIvPjxjaXJjbGUgY3g9IjQwJSIgY3k9IjgwJSIgcj0iMS41IiBmaWxsPSJ3aGl0ZSIgb3BhY2l0eT0iMC43Ii8+PGNpcmNsZSBjeD0iODAlIiBjeT0iNTAlIiByPSIyIiBmaWxsPSJ3aGl0ZSIgb3BhY2l0eT0iMC45Ii8+PGNpcmNsZSBjeD0iMTAlIiBjeT0iNzAlIiByPSIxIiBmaWxsPSJ3aGl0ZSIgb3BhY2l0eT0iMC41Ii8+PGNpcmNsZSBjeD0iOTAlIiBjeT0iMjAlIiByPSIxLjUiIGZpbGw9IndoaXRlIiBvcGFjaXR5PSIwLjciLz48Y2lyY2xlIGN4PSI1MCUiIGN5PSI2MCUiIHI9IjEiIGZpbGw9IndoaXRlIiBvcGFjaXR5PSIwLjgiLz48L3N2Zz4=') repeat;
+      animation: twinkle 4s infinite alternate;
+      pointer-events: none;
+      z-index: 0;
+    }
+    @keyframes twinkle {
+      0% { opacity: 0.5; }
+      100% { opacity: 1; }
+    }
   </style>
 </head>
 <body>
   <div class="stars"></div>
 
-  <img class="teddy teddy1" src="https://i.ytimg.com/vi/rtRVvjKnzKo/maxresdefault.jpg" alt="Ursuleț mov">
-  <img class="teddy teddy2" src="https://previews.123rf.com/images/pixander/pixander2308/pixander230808798/210828096-two-teddy-bears-in-the-snow-with-hearts-valentines-day-background.jpg" alt="Ursuleți cu inimi mov">
-  <img class="teddy teddy3" src="https://w0.peakpx.com/wallpaper/431/628/HD-wallpaper-cute-bear-hugs-pretty-lovely-love-four-seasons-bear-adorable-attractions-in-dreams-most-ed-abstract-i-miss-you-cute-teddy-bears-fantasy-bear-lovers-hugs-love-beloved-valentines.jpg" alt="Ursuleți îmbrățișați">
+  <div class="envelope" id="envelope">
+    <div class="front">Pentru Alexia 💜 Apasă să deschizi</div>
+  </div>
 
   <div class="card">
-    <h1 class="title">Pentru Alexia ❤️</h1>
+    <h1 class="title">Pentru Alexia 💜</h1>
 
     <p>Helo draga mea Alexia</p>
     <p>Sunt eu Florin si am facut acest site special pentru tine</p>
@@ -216,19 +272,45 @@
     <p>Cel mai important pentru mine este daca TU iti doresti</p>
     <p>Iti multumesc enorm ca ai fost langa mine si ca ai insemnat atat de mult pentru mine</p>
 
-    <div class="big">Vrei sa fii valentina mea</div>
+    <div class="big">Vrei sa fii valentina mea 💜</div>
 
     <div class="buttons">
-      <button id="yes">DA</button>
+      <button id="yes">DA 💜</button>
       <button id="no">NU</button>
     </div>
 
     <div id="final"></div>
   </div>
 
+  <!-- Teddy Bear -->
+  <div class="teddy">
+    <div class="head">
+      <div class="ear1"><div class="ear-m1"></div></div>
+      <div class="ear2"><div class="ear-m2"></div></div>
+      <div class="eye1"><div class="w"></div></div>
+      <div class="eye2"><div class="w"></div></div>
+      <div class="mouth-nose">
+        <div class="nose"></div>
+        <div class="mouth"></div>
+      </div>
+    </div>
+    <div class="body">
+      <div class="stomach"></div>
+      <div class="hand1"><div class="h"></div></div>
+      <div class="hand2"><div class="h"></div></div>
+      <div class="leg1"><div class="l"></div></div>
+      <div class="leg2"><div class="l"></div></div>
+    </div>
+  </div>
+
   <script>
-    // Reveal text on scroll
-    const paragraphs = document.querySelectorAll('p');
+    // Open envelope
+    document.getElementById('envelope').addEventListener('click', () => {
+      envelope.classList.add('open');
+    });
+
+    // Reveal paragraphs on scroll
+    const paragraphs = document.querySelectorAll('.card p');
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -236,7 +318,6 @@
         }
       });
     }, { threshold: 0.1 });
-
     paragraphs.forEach(p => observer.observe(p));
 
     // Hearts
@@ -245,11 +326,11 @@
       heart.className = 'heart';
       heart.innerHTML = '💜';
       heart.style.left = Math.random() * 100 + 'vw';
-      heart.style.animationDuration = Math.random() * 5 + 5 + 's';
+      heart.style.animationDuration = Math.random() * 4 + 4 + 's';
       document.body.appendChild(heart);
       setTimeout(() => heart.remove(), 8000);
     }
-    setInterval(createHeart, 300);
+    setInterval(createHeart, 200);
 
     // Confetti on yes
     function createConfetti() {
@@ -280,7 +361,7 @@
       final.innerHTML = 'Daca chiar ai ales da vreau sa iti spun ca probabil m ai facut cel mai fericit baiat din univers si din lumea asta<br><br>Promit sa nu te dezamagesc<br><br>Stiu ca poate nu sunt tipul tau dar cred ca oricine merita macar o sansa nu<br><br>❤️';
       final.classList.add('visible');
       noBtn.style.display = 'none';
-      setInterval(createConfetti, 100);
+      setInterval(createConfetti, 50);
     };
   </script>
 </body>
