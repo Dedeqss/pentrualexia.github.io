@@ -20,7 +20,7 @@ html, body{
   text-align:center;
   padding:20px;
   overflow-x:hidden;
-  overflow-y:hidden; /* blocat initial */
+  overflow-y:hidden; /* blocat scroll inițial */
 }
 
 /* INTRO */
@@ -61,6 +61,7 @@ html, body{
 
 .intro-text{margin-top:30px; font-family:'Parisienne'; font-size:2.2rem; opacity:.95;}
 
+/* CARD */
 .card{
   max-width:800px;
   margin:0 auto;
@@ -80,9 +81,31 @@ h1{font-family:'Great Vibes'; font-size:4.8rem; margin-bottom:30px;}
 p{font-size:1.35rem; line-height:1.7; margin:15px 0; opacity:0; transform:translateY(20px); transition:.9s ease;}
 p.show{opacity:1; transform:none;}
 
-.big{font-family:'Parisienne'; font-size:4.5rem; margin:50px 0;}
-.buttons{display:flex; justify-content:center; gap:30px;}
-button{font-size:1.8rem; padding:14px 50px; border:none; border-radius:70px; cursor:pointer;}
+.big{
+  font-family:'Parisienne';
+  font-size:4.5rem;
+  margin:50px 0;
+  opacity:0;
+  transform:translateY(30px);
+  transition:1.2s ease;
+}
+
+.buttons{
+  display:flex;
+  justify-content:center;
+  gap:30px;
+  opacity:0;
+  transition:1s;
+}
+
+button{
+  font-size:1.8rem;
+  padding:14px 50px;
+  border:none;
+  border-radius:70px;
+  cursor:pointer;
+}
+
 #yes{background:linear-gradient(135deg,#d946ef,#7c3aed); color:white;}
 #no{background:rgba(255,255,255,.25); color:white;}
 #final{margin-top:50px; font-family:'Parisienne'; font-size:2.8rem; opacity:0; transition:2s;}
@@ -122,43 +145,107 @@ button{font-size:1.8rem; padding:14px 50px; border:none; border-radius:70px; cur
 <p>Așa că voiam să te întreb ceva extrem de important pentru mine…</p>
 <p>Indiferent de răspuns, vreau să știi că te apreciez enorm.</p>
 
-<div class="big">Ai vrea să fii valentina mea anul ăsta?</div>
-<div class="buttons">
+<div class="big" id="question">Ai vrea să fii valentina mea anul ăsta?</div>
+
+<div class="buttons" id="buttons">
   <button id="yes">DA 💜</button>
   <button id="no">NU</button>
 </div>
+
 <div id="final"></div>
 </div>
 
+<!-- CONTAINER PENTRU EMOJI -->
+<div id="emoji-container"
+style="
+  pointer-events:none;
+  position:fixed;
+  inset:0;
+  z-index:9999;
+  overflow:hidden;
+"></div>
+
 <script>
-const env=document.getElementById("env");
-const intro=document.getElementById("intro");
-const card=document.getElementById("card");
-const ps=document.querySelectorAll("p");
-const yes=document.getElementById("yes");
-const no=document.getElementById("no");
-const final=document.getElementById("final");
+const env = document.getElementById("env");
+const intro = document.getElementById("intro");
+const card = document.getElementById("card");
+const ps = document.querySelectorAll("p");
+const yes = document.getElementById("yes");
+const no = document.getElementById("no");
+const final = document.getElementById("final");
+const question = document.getElementById("question");
+const buttons = document.getElementById("buttons");
 
-env.onclick=()=>{
+/* ================= EMOJI RAIN ================= */
+const emojiContainer = document.getElementById("emoji-container");
+const emojis = ["🧸","💜","🦥"];
+
+function createEmoji() {
+  const e = document.createElement("span");
+  e.innerText = emojis[Math.floor(Math.random()*emojis.length)];
+  e.style.position = "absolute";
+  e.style.left = Math.random() * 100 + "vw";
+  e.style.top = "-50px";
+  e.style.fontSize = Math.random()*24 + 24 + "px";
+  e.style.opacity = Math.random() * 0.7 + 0.3;
+  e.style.transition = "transform 5s linear, opacity 5s linear";
+  emojiContainer.appendChild(e);
+
+  const endY = window.innerHeight + 100;
+  const rotate = Math.random()*720 - 360;
+
+  requestAnimationFrame(() => {
+    e.style.transform = `translateY(${endY}px) rotate(${rotate}deg)`;
+    e.style.opacity = 0;
+  });
+
+  setTimeout(() => e.remove(), 5000);
+}
+
+// ploaie constantă
+setInterval(createEmoji, 900);
+
+/* ================= INTRO ================= */
+env.onclick = () => {
   env.classList.add("open");
-  setTimeout(()=>{
-    intro.style.display="none";
+
+  setTimeout(() => {
+    intro.style.display = "none";
     card.classList.add("show");
-    document.body.style.overflowY="auto"; // scroll activ
-    document.documentElement.style.overflowY="auto"; // scroll activ și pe html
-    ps.forEach((p,i)=>setTimeout(()=>p.classList.add("show"),i*350));
-  },1600);
+    document.body.style.overflowY = "auto";
+    document.documentElement.style.overflowY = "auto";
+
+    ps.forEach((p, i) => {
+      setTimeout(() => p.classList.add("show"), i * 350);
+    });
+
+    // Afișăm întrebarea DUPĂ ce apare tot textul
+    const totalTextTime = ps.length * 350 + 800;
+
+    setTimeout(() => {
+      question.style.opacity = 1;
+      question.style.transform = "none";
+      buttons.style.opacity = 1;
+    }, totalTextTime);
+
+  }, 1600);
 };
 
-let scale=1;
-no.onclick=()=>{
-  scale+=.35;
-  yes.style.transform=`scale(${scale})`;
-  if(scale>3)no.style.display="none";
+/* ================= BUTOANE ================= */
+let scale = 1;
+no.onclick = () => {
+  scale += 0.35;
+  yes.style.transform = `scale(${scale})`;
+  if (scale > 3) no.style.display = "none";
 };
 
-yes.onclick=()=>{
-  final.innerHTML="Wow, chiar ai zis da… Iti multumesc din suflet, Alexia! Promit că o sa incerc sa fiu un Valentin bun si sa te fac sa zambesti! 💜💜";
+yes.onclick = () => {
+  // EXPLOZIE DE EMOJI
+  for (let i = 0; i < 80; i++) {
+    setTimeout(createEmoji, i * 25);
+  }
+
+  final.innerHTML = "Wow… chiar ai zis da 🥹💜<br>Îți mulțumesc din suflet, Alexia! Promit că o să fiu un Valentin care te face să zâmbești în fiecare zi 💜";
   final.classList.add("show");
 };
 </script>
