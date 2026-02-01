@@ -125,11 +125,26 @@ button{
   border:none;
   border-radius:70px;
   cursor:pointer;
+  box-shadow:0 15px 35px rgba(0,0,0,0.3);
+  transition:all 0.3s ease;
 }
 
 #yes{
   background:linear-gradient(135deg,#d946ef,#7c3aed);
   color:white;
+  background-size:300%;
+  animation:gradientFlow 7s ease infinite;
+}
+
+@keyframes gradientFlow{
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+
+#yes:hover{
+  transform:translateY(-10px) scale(1.1);
+  box-shadow:0 25px 70px rgba(217,70,239,0.8);
 }
 
 #no{
@@ -137,7 +152,10 @@ button{
   color:#fff;
 }
 
-/* FINAL */
+#no:hover{
+  transform:translateY(-5px);
+}
+
 #final{
   font-family:'Parisienne';
   font-size:3.2rem;
@@ -167,7 +185,6 @@ button{
 .fall{
   position:fixed;
   top:-15vh;
-  left:0;
   pointer-events:none;
   animation:fall linear forwards;
 }
@@ -177,9 +194,9 @@ button{
   10%{opacity:var(--o)}
   to{transform:translateY(120vh) rotate(var(--r));opacity:0}
 }
+
 </style>
 </head>
-
 <body>
 
 <div class="intro" id="intro">
@@ -190,11 +207,26 @@ button{
 <div class="card" id="card">
   <div class="title">Pentru Alexia 💜</div>
 
+  <!-- TEXTUL TAU COMPLET -->
   <p>Helo draga mea Alexia</p>
   <p>Sunt eu Florin si am facut acest site special pentru tine</p>
-  <p>De cand vorbim imi faci viata mai frumoasa zilnic</p>
-  <p>Doar faptul ca esti acolo imi schimba complet starea</p>
-  <p>Te apreciez enorm pentru tot ce esti</p>
+  <p>Voiam sa iti spun ca in ultima perioada de cand am inceput sa vorbim chiar chiar chiar imi faci viata mai buna zilnic</p>
+  <p>Parca doar cand stiu ca stau seara cu tine in apel totul devine mult mai frumos</p>
+  <p>Apreciez enorm ca stai cu mine in fiecare seara imi asculti problemele si simt ca chiar iti pasa</p>
+  <p>Eu tin extrem de mult la tine si de fiecare data iti ascult povestile tale cu cel mai mare entuziasm posibil</p>
+  <p>Sunt atat de fericit cand te ascult incat nici nu pot explica</p>
+  <p>Mereu imi faci seara mai frumoasa si nu conteaza despre ce vorbim sau ce facem</p>
+  <p>Doar faptul ca esti acolo cu mine imi schimba complet starea</p>
+  <p>Stiu ca esti intr o situatie ciudata cu Strambu si te gandesti si la Armyn</p>
+  <p>Dar sincer parca in ultima perioada am vazut cat de draguta esti cu mine si cu toata lumea</p>
+  <p>As vrea sa ne apropiem cat mai mult daca iti doresti si tu</p>
+  <p>De aceea vreau sa iti adresez o intrebare extrem de importanta pentru mine</p>
+  <p>Daca nu vrei este complet ok te inteleg perfect si nu voi fi trist</p>
+  <p>Din ce mi ai spus pe 14 februarie nu ai nimic planificat</p>
+  <p>Asa ca voiam sa te intreb daca ai vrea sa petrecem ziua aceea impreuna</p>
+  <p>Sa facem lucruri dragute poate sa iesim prin mall sau oriunde ne simtim bine</p>
+  <p>Cel mai important pentru mine este daca TU iti doresti</p>
+  <p>Iti multumesc enorm ca ai fost langa mine si ca ai insemnat atat de mult pentru mine</p>
 
   <div class="big">Vrei să fii Valentina mea</div>
 
@@ -220,11 +252,18 @@ env.onclick=()=>{
   setTimeout(()=>{
     intro.classList.add("hide");
     card.classList.add("show");
-    document.querySelectorAll("p").forEach((p,i)=>{
-      setTimeout(()=>p.classList.add("show"),i*400);
-    });
+    const ps=document.querySelectorAll("#card p");
+    ps.forEach((p,i)=>setTimeout(()=>{p.classList.add("show"); maybeEmoji(p)},i*400));
   },1200);
 };
+
+function maybeEmoji(p){
+  if(Math.random()<0.3){
+    const e=document.createElement("span");
+    e.innerHTML=" 💜";
+    p.appendChild(e);
+  }
+}
 
 let s=1;
 no.onclick=()=>{
@@ -234,14 +273,14 @@ no.onclick=()=>{
 };
 
 yes.onclick=()=>{
-  final.innerHTML="Daca ai ales DA… m-ai facut cel mai fericit 💜<br>Promit sa te pretuiesc mereu.";
+  final.innerHTML="Daca ai ales DA… probabil m-ai facut cel mai fericit baiat din univers 💜<br>Promit sa te pretuiesc mereu.";
   final.classList.add("show");
-  startRain();
+  startRain(80); // multe emoji-uri rapid
 };
 
-function startRain(){
-  for(let i=0;i<60;i++){
-    setTimeout(createFall,i*80);
+function startRain(n){
+  for(let i=0;i<n;i++){
+    setTimeout(createFall,i*50);
   }
 }
 
