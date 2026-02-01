@@ -38,10 +38,10 @@
       width: 100%;
       height: 100%;
       transform-style: preserve-3d;
-      transition: transform 1.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+      transition: transform 1.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
     }
     .envelope.open {
-      transform: rotateX(170deg) translateY(-40px);
+      transform: rotateX(165deg) translateY(-50px);
     }
     .front, .back, .flap {
       position: absolute;
@@ -49,7 +49,7 @@
       height: 100%;
       backface-visibility: hidden;
       border-radius: 25px 25px 0 0;
-      box-shadow: 0 25px 50px rgba(0,0,0,0.4);
+      box-shadow: 0 25px 50px rgba(0,0,0,0.45);
     }
     .front {
       background: linear-gradient(135deg, #a855f7, #7c3aed);
@@ -67,10 +67,10 @@
       z-index: 4;
       clip-path: polygon(0 0, 100% 0, 50% 100%);
       transform-origin: top;
-      transition: transform 1.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+      transition: transform 1.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
     }
     .envelope.open .flap {
-      transform: rotateX(-170deg);
+      transform: rotateX(-165deg);
     }
     .seal {
       position: absolute;
@@ -90,11 +90,11 @@
       font-size: 3rem;
       color: white;
       text-shadow: 0 0 15px rgba(0,0,0,0.6);
-      animation: pulseSeal 2.5s ease-in-out infinite alternate;
+      animation: pulseSeal 2.2s ease-in-out infinite alternate;
     }
     @keyframes pulseSeal {
       from { transform: translate(-50%, -50%) scale(1); box-shadow: 0 0 40px rgba(217,70,239,0.7); }
-      to   { transform: translate(-50%, -50%) scale(1.08); box-shadow: 0 0 60px rgba(217,70,239,1); }
+      to   { transform: translate(-50%, -50%) scale(1.12); box-shadow: 0 0 70px rgba(217,70,239,1); }
     }
     .instruction {
       position: absolute;
@@ -102,34 +102,34 @@
       left: 50%;
       transform: translateX(-50%);
       font-family: 'Parisienne', cursive;
-      font-size: 2rem;
+      font-size: 2.2rem;
       color: #f3e8ff;
-      text-shadow: 0 4px 10px rgba(124,58,237,0.8);
+      text-shadow: 0 4px 12px rgba(124,58,237,0.9);
       pointer-events: none;
-      animation: fadePulse 3s infinite;
+      animation: fadePulse 2.8s infinite;
       white-space: nowrap;
     }
     @keyframes fadePulse {
-      0%, 100% { opacity: 0.7; transform: translateX(-50%) scale(1); }
-      50%      { opacity: 1; transform: translateX(-50%) scale(1.05); }
+      0%, 100% { opacity: 0.8; transform: translateX(-50%) scale(1); }
+      50%      { opacity: 1; transform: translateX(-50%) scale(1.06); }
     }
     .message {
       position: absolute;
       top: 50%;
       left: 50%;
-      transform: translate(-50%, -50%) translateY(150px);
-      width: 90%;
-      max-width: 750px;
-      background: rgba(30, 10, 60, 0.88);
-      backdrop-filter: blur(15px);
-      border-radius: 30px;
+      transform: translate(-50%, -50%) translateY(180px);
+      width: 92%;
+      max-width: 780px;
+      background: rgba(30, 10, 60, 0.9);
+      backdrop-filter: blur(16px);
+      border-radius: 32px;
       padding: 50px 40px;
       text-align: center;
       opacity: 0;
-      transition: all 1.2s ease 0.8s;
-      box-shadow: 0 40px 90px rgba(0,0,0,0.6);
+      transition: all 1.3s ease 0.9s;
+      box-shadow: 0 45px 100px rgba(0,0,0,0.6);
       overflow-y: auto;
-      max-height: 75vh;
+      max-height: 78vh;
     }
     .envelope.open ~ .message {
       opacity: 1;
@@ -137,18 +137,18 @@
     }
     .title {
       font-family: 'Pinyon Script', cursive;
-      font-size: 5rem;
+      font-size: 5.2rem;
       color: #f3e8ff;
-      margin-bottom: 25px;
-      text-shadow: 0 8px 20px rgba(124,58,237,0.9);
+      margin-bottom: 28px;
+      text-shadow: 0 8px 22px rgba(124,58,237,0.9);
     }
     p {
-      font-size: 1.3rem;
-      line-height: 1.8;
-      margin: 18px 0;
+      font-size: 1.32rem;
+      line-height: 1.82;
+      margin: 20px 0;
       opacity: 0;
-      transform: translateY(40px);
-      transition: all 1s ease;
+      transform: translateY(50px);
+      transition: all 1.1s cubic-bezier(0.22, 0.61, 0.36, 1);
     }
     p.visible {
       opacity: 1;
@@ -156,36 +156,36 @@
     }
     .big {
       font-family: 'Great Vibes', cursive;
-      font-size: 4rem;
+      font-size: 4.2rem;
       color: #f3e8ff;
-      margin: 50px 0 35px;
-      text-shadow: 0 6px 18px rgba(124,58,237,0.8);
-      animation: heartBeat 3s infinite;
+      margin: 55px 0 40px;
+      text-shadow: 0 6px 20px rgba(124,58,237,0.85);
+      animation: heartBeat 3.2s infinite;
     }
     @keyframes heartBeat {
       0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.07); }
+      50% { transform: scale(1.08); }
     }
     .buttons {
       display: flex;
       justify-content: center;
-      gap: 60px;
-      margin: 50px 0;
+      gap: 65px;
+      margin: 55px 0;
     }
     button {
-      font-size: 1.6rem;
-      padding: 16px 55px;
+      font-size: 1.65rem;
+      padding: 18px 60px;
       border: none;
       border-radius: 60px;
       cursor: pointer;
       transition: all 0.5s ease;
-      box-shadow: 0 12px 30px rgba(0,0,0,0.4);
+      box-shadow: 0 12px 35px rgba(0,0,0,0.45);
     }
     #yes {
       background: linear-gradient(135deg, #d946ef, #a855f7, #7c3aed);
       color: white;
-      background-size: 200%;
-      animation: gradientFlow 5s ease infinite;
+      background-size: 300%;
+      animation: gradientFlow 6s ease infinite;
     }
     @keyframes gradientFlow {
       0% { background-position: 0% 50%; }
@@ -193,66 +193,72 @@
       100% { background-position: 0% 50%; }
     }
     #yes:hover {
-      transform: translateY(-10px) scale(1.12);
-      box-shadow: 0 25px 60px rgba(217,70,239,0.8);
+      transform: translateY(-12px) scale(1.15);
+      box-shadow: 0 30px 70px rgba(217,70,239,0.85);
     }
     #no {
-      background: rgba(255,255,255,0.18);
+      background: rgba(255,255,255,0.2);
       color: #e9d5ff;
       border: 2px solid #c4b5fd;
     }
     #no:hover {
-      background: rgba(255,255,255,0.1);
-      transform: translateY(-6px);
+      background: rgba(255,255,255,0.12);
+      transform: translateY(-8px);
     }
     #final {
       font-family: 'Parisienne', cursive;
-      font-size: 2.8rem;
+      font-size: 2.9rem;
       color: #f3e8ff;
-      margin-top: 50px;
-      line-height: 1.5;
+      margin-top: 60px;
+      line-height: 1.55;
       opacity: 0;
-      transition: all 1.8s ease;
-      transform: scale(0.85);
+      transform: scale(0.8) translateY(40px);
+      transition: all 1.8s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
     #final.visible {
       opacity: 1;
-      transform: scale(1);
+      transform: scale(1) translateY(0);
     }
     .final-heart {
-      font-size: 7rem;
+      font-size: 8rem;
       color: #d946ef;
-      margin-top: 40px;
-      animation: floatBigHeart 5s ease-in-out infinite;
+      margin-top: 50px;
+      animation: floatBigHeart 5.5s ease-in-out infinite;
       opacity: 0;
-      transition: opacity 2.5s ease 1.5s;
+      transition: opacity 2.8s ease 1.8s;
     }
     #final.visible ~ .final-heart {
       opacity: 1;
     }
     @keyframes floatBigHeart {
       0%, 100% { transform: translateY(0) rotate(0deg); }
-      50% { transform: translateY(-25px) rotate(5deg); }
+      50% { transform: translateY(-30px) rotate(8deg); }
     }
     .heart {
       position: absolute;
-      font-size: 2.5rem;
+      font-size: 2.8rem;
       color: #d946ef;
       pointer-events: none;
-      animation: fall 8s linear infinite;
+      animation: fall 7.5s linear infinite;
       z-index: 5;
-      text-shadow: 0 0 12px rgba(217,70,239,0.8);
+      text-shadow: 0 0 15px rgba(217,70,239,0.85);
     }
     @keyframes fall {
-      0% { transform: translateY(-15vh) rotate(0deg); opacity: 1; }
-      100% { transform: translateY(115vh) rotate(1080deg); opacity: 0; }
+      0% { transform: translateY(-20vh) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(120vh) rotate(1440deg); opacity: 0; }
+    }
+    .fade-out {
+      opacity: 0 !important;
+      transform: translateY(60px) !important;
+      transition: all 0.9s ease !important;
+      pointer-events: none;
     }
     @media (max-width: 600px) {
-      .envelope-container { width: 280px; height: 200px; }
-      .title { font-size: 3.8rem; }
-      .big { font-size: 3.2rem; }
-      p { font-size: 1.15rem; }
-      .instruction { font-size: 1.6rem; bottom: -50px; }
+      .envelope-container { width: 290px; height: 210px; }
+      .title { font-size: 4rem; }
+      .big { font-size: 3.4rem; }
+      p { font-size: 1.18rem; }
+      .instruction { font-size: 1.8rem; bottom: -55px; }
     }
   </style>
 </head>
@@ -315,10 +321,13 @@
         instruction.style.opacity = '0';
         setTimeout(() => {
           instruction.style.display = 'none';
-          paragraphs.forEach((p, i) => {
-            setTimeout(() => p.classList.add('visible'), i * 450 + 300);
-          });
-        }, 1200);
+          // Textul apare acum garantat
+          setTimeout(() => {
+            paragraphs.forEach((p, i) => {
+              setTimeout(() => p.classList.add('visible'), i * 480 + 400);
+            });
+          }, 300);
+        }, 1400);
       }
     });
 
@@ -328,41 +337,52 @@
     const final = document.getElementById('final');
 
     noBtn.onclick = () => {
-      scale += 0.32;
+      scale += 0.35;
       yesBtn.style.transform = `scale(${scale})`;
       noBtn.style.transform = `scale(${Math.max(0.5, 1 / scale)})`;
-      if (scale > 3.2) {
+      if (scale > 3.5) {
         noBtn.style.opacity = '0';
         noBtn.style.pointerEvents = 'none';
       }
     };
 
     yesBtn.onclick = () => {
-      // Ascunde titlul, paragrafele, big question și butoanele
-      document.querySelector('.title').style.display = 'none';
-      paragraphs.forEach(p => p.style.display = 'none');
-      document.querySelector('.big').style.display = 'none';
-      document.querySelector('.buttons').style.display = 'none';
+      // Fade-out smooth pentru tot conținutul vechi
+      const toFade = [
+        document.querySelector('.title'),
+        ...paragraphs,
+        document.querySelector('.big'),
+        document.querySelector('.buttons')
+      ];
+      toFade.forEach(el => {
+        if (el) el.classList.add('fade-out');
+      });
 
-      final.innerHTML = 
-        `Daca chiar ai ales da... probabil m-ai făcut cel mai fericit băiat din univers și din lumea asta 💜<br><br>` +
-        `Promit să nu te dezamăgesc niciodată.<br>` +
-        `Știu că poate nu sunt tipul tău clasic, dar cred că oricine merită măcar o șansă, nu?<br><br>` +
-        `Te pup cu tot dragul și abia aștept să te țin în brațe. 🌙💜`;
-      final.classList.add('visible');
+      setTimeout(() => {
+        toFade.forEach(el => {
+          if (el) el.style.display = 'none';
+        });
 
-      noBtn.style.display = 'none';
+        final.innerHTML = 
+          `Daca chiar ai ales da... probabil m-ai făcut cel mai fericit băiat din univers și din lumea asta 💜<br><br>` +
+          `Promit să nu te dezamăgesc niciodată.<br>` +
+          `Știu că poate nu sunt tipul tău clasic, dar cred că oricine merită măcar o șansă, nu?<br><br>` +
+          `Te pup cu tot dragul și abia aștept să te țin în brațe. 🌙💜`;
+        final.classList.add('visible');
 
-      // Mai multe inimi mov după DA
-      setInterval(() => {
-        const heart = document.createElement('div');
-        heart.className = 'heart';
-        heart.innerHTML = '💜';
-        heart.style.left = Math.random() * 100 + 'vw';
-        heart.style.animationDuration = (Math.random() * 6 + 6) + 's';
-        document.body.appendChild(heart);
-        setTimeout(() => heart.remove(), 12000);
-      }, 250);
+        noBtn.style.display = 'none';
+
+        // Inimi mov explozive
+        setInterval(() => {
+          const heart = document.createElement('div');
+          heart.className = 'heart';
+          heart.innerHTML = '💜';
+          heart.style.left = Math.random() * 100 + 'vw';
+          heart.style.animationDuration = (Math.random() * 5 + 5) + 's';
+          document.body.appendChild(heart);
+          setTimeout(() => heart.remove(), 10000);
+        }, 220);
+      }, 900);
     };
   </script>
 </body>
