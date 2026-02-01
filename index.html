@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pentru Alexia 💜</title>
+  <title>Pentru Alexia mea dragă 💜</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Pinyon+Script&family=Parisienne&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
     * {
       margin: 0;
@@ -15,7 +15,7 @@
     }
     body {
       min-height: 100vh;
-      background: linear-gradient(135deg, #c084fc 0%, #7c3aed 50%, #4c1d95 100%);
+      background: linear-gradient(135deg, #9f7aea 0%, #7c3aed 50%, #553c9a 100%);
       font-family: 'Poppins', sans-serif;
       color: #f3e8ff;
       overflow: hidden;
@@ -23,293 +23,229 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      padding: 20px;
     }
-    .envelope {
+    .container {
       position: relative;
-      width: 400px;
-      height: 250px;
-      background: #a855f7;
-      border-radius: 10px;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.5);
-      cursor: pointer;
-      transition: all 0.5s ease;
-    }
-    .envelope::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
       width: 100%;
-      height: 100%;
-      background: #c084fc;
-      clip-path: polygon(0 0, 100% 0, 50% 50%);
-      transition: all 0.5s ease;
-    }
-    .envelope.open::before {
-      transform: rotate(180deg);
-    }
-    .envelope .front {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      font-family: 'Dancing Script', cursive;
-      font-size: 3rem;
-      color: #fff;
-      text-shadow: 0 4px 10px rgba(124,58,237,0.8);
-    }
-    .card {
-      position: absolute;
-      top: 50px;
-      left: 50%;
-      transform: translateX(-50%) scale(0);
-      width: 90vw;
-      max-width: 800px;
-      background: rgba(30,10,60,0.8);
-      backdrop-filter: blur(20px);
-      border-radius: 30px;
-      padding: 50px 40px;
+      max-width: 900px;
       text-align: center;
-      opacity: 0;
-      transition: all 1s ease 0.5s;
-      overflow-y: auto;
-      max-height: 80vh;
-      box-shadow: 0 30px 60px rgba(0,0,0,0.6);
-    }
-    .envelope.open + .card {
-      transform: translateX(-50%) scale(1);
-      opacity: 1;
+      z-index: 10;
     }
     .title {
-      font-family: 'Dancing Script', cursive;
-      font-size: 4.5rem;
-      color: #f3e8ff;
-      text-shadow: 0 6px 12px rgba(124,58,237,0.8);
-      margin-bottom: 30px;
-      animation: glow 2s ease-in-out infinite alternate;
+      font-family: 'Pinyon Script', cursive;
+      font-size: 5.5rem;
+      color: #e9d5ff;
+      text-shadow: 0 8px 20px rgba(124,58,237,0.9), 0 0 30px rgba(167,139,250,0.7);
+      margin-bottom: 20px;
+      animation: romanticGlow 4s ease-in-out infinite alternate;
+      letter-spacing: 2px;
     }
-    @keyframes glow {
-      from { text-shadow: 0 0 10px #c084fc, 0 0 20px #7c3aed; }
-      to { text-shadow: 0 0 20px #c084fc, 0 0 40px #7c3aed; }
+    @keyframes romanticGlow {
+      from { text-shadow: 0 0 15px #c084fc, 0 0 30px #a855f7, 0 0 50px #7c3aed; transform: scale(1); }
+      to   { text-shadow: 0 0 30px #c084fc, 0 0 60px #a855f7, 0 0 90px #7c3aed; transform: scale(1.03); }
+    }
+    .subtitle {
+      font-family: 'Parisienne', cursive;
+      font-size: 2.8rem;
+      color: #d1c4ff;
+      margin-bottom: 40px;
+      animation: fadeIn 2s ease-out;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .card {
+      background: rgba(30, 10, 60, 0.75);
+      backdrop-filter: blur(18px);
+      border-radius: 35px;
+      padding: 50px 40px;
+      border: 2px solid rgba(167,139,250,0.4);
+      box-shadow: 0 40px 100px rgba(0,0,0,0.5), inset 0 0 30px rgba(124,58,237,0.3);
+      max-height: 70vh;
+      overflow-y: auto;
+      animation: cardFloat 8s ease-in-out infinite alternate;
+    }
+    @keyframes cardFloat {
+      from { transform: translateY(0) rotate(-1deg); }
+      to   { transform: translateY(-20px) rotate(1deg); }
     }
     p {
-      font-size: 1.2rem;
-      line-height: 1.6;
-      margin: 12px 0;
+      font-size: 1.35rem;
+      line-height: 1.75;
+      margin: 18px 0;
       color: #e9d5ff;
       opacity: 0;
-      transform: translateY(20px);
-      transition: all 0.6s ease;
+      transform: translateY(40px);
+      transition: all 1.2s cubic-bezier(0.22, 0.61, 0.36, 1);
     }
     p.visible {
       opacity: 1;
       transform: translateY(0);
     }
     .big {
-      font-family: 'Dancing Script', cursive;
-      font-size: 3rem;
-      font-weight: bold;
+      font-family: 'Great Vibes', cursive;
+      font-size: 4.2rem;
       color: #f3e8ff;
-      margin: 40px 0 30px;
-      text-shadow: 0 5px 15px rgba(124,58,237,0.7);
-      animation: pulse 1.5s infinite;
+      margin: 50px 0 40px;
+      text-shadow: 0 6px 20px rgba(124,58,237,0.8);
+      animation: heartBeat 3s infinite ease-in-out;
     }
-    @keyframes pulse {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.05); }
-      100% { transform: scale(1); }
+    @keyframes heartBeat {
+      0%, 100% { transform: scale(1); }
+      50%      { transform: scale(1.08); }
     }
     .buttons {
       display: flex;
       justify-content: center;
-      gap: 40px;
-      margin: 30px 0;
+      gap: 60px;
+      margin: 50px 0;
     }
     button {
-      font-size: 1.4rem;
-      padding: 12px 40px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.6rem;
+      font-weight: 500;
+      padding: 18px 70px;
       border: none;
-      border-radius: 50px;
+      border-radius: 60px;
       cursor: pointer;
-      transition: all 0.4s ease;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+      transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.4);
     }
     #yes {
-      background: linear-gradient(45deg, #d946ef, #a855f7);
+      background: linear-gradient(135deg, #d946ef, #a855f7, #7c3aed);
       color: white;
+      background-size: 200% 200%;
+      animation: gradientFlow 6s ease infinite;
+    }
+    @keyframes gradientFlow {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
     }
     #yes:hover {
-      transform: scale(1.1);
-      box-shadow: 0 15px 30px rgba(168,85,247,0.7);
+      transform: translateY(-12px) scale(1.15);
+      box-shadow: 0 25px 60px rgba(168,85,247,0.8);
     }
     #no {
-      background: rgba(255,255,255,0.15);
-      color: #e9d5ff;
+      background: rgba(255,255,255,0.12);
+      color: #d1c4ff;
+      border: 2px solid #c4b5fd;
     }
     #no:hover {
-      background: rgba(255,255,255,0.1);
+      background: rgba(255,255,255,0.08);
+      transform: translateY(-5px);
     }
     #final {
-      font-family: 'Dancing Script', cursive;
-      font-size: 2rem;
+      font-family: 'Parisienne', cursive;
+      font-size: 2.8rem;
       color: #f3e8ff;
-      margin-top: 30px;
-      opacity: 0;
-      transition: opacity 1s ease;
+      margin-top: 40px;
       line-height: 1.5;
+      opacity: 0;
+      transition: opacity 1.5s ease, transform 1.5s ease;
+      transform: scale(0.8);
     }
     #final.visible {
       opacity: 1;
+      transform: scale(1);
     }
-    /* Teddy Bear CSS from adapted CodePen */
-    .teddy {
-      position: absolute;
-      bottom: 20px;
-      left: 20px;
-      transform: scale(0.8);
-      filter: drop-shadow(5px 10px 15px #4c1d95);
-      z-index: 5;
-    }
-    .teddy .head, .teddy .ear1, .teddy .ear2, .teddy .body, .teddy .hand1, .teddy .hand2, .teddy .leg1, .teddy .leg2 {
-      background-color: #a855f7; /* Purple */
-    }
-    .teddy .stomach, .teddy .ear-m1, .teddy .ear-m2, .teddy .h, .teddy .l {
-      background-color: #e0bbff; /* Light purple */
-      box-shadow: inset 6px -1px 10px 0px #7c3aedbe;
-    }
-    .teddy .nose {
-      background-color: #4c1d95; /* Dark purple */
-    }
-    .teddy .mouth {
-      border-bottom: 2px #4c1d95 solid;
-    }
-    /* Add breathing animation */
-    @keyframes breathe {
-      0%, 100% { transform: scale(0.8); }
-      50% { transform: scale(0.82); }
-    }
-    .teddy {
-      animation: breathe 4s ease-in-out infinite;
-    }
-    .teddy .hand2 {
-      animation: hi 1s linear infinite;
-    }
-    @keyframes hi {
-      0% { transform: rotate(-15deg); }
-      50% { transform: rotate(-40deg); }
-      100% { transform: rotate(-15deg); }
-    }
-    /* Falling Hearts */
+    /* Falling purple hearts - enhanced */
     .heart {
       position: absolute;
-      font-size: 2rem;
+      font-size: 2.5rem;
       color: #d946ef;
-      animation: fall 6s linear infinite;
-      z-index: 1;
-    }
-    @keyframes fall {
-      0% { transform: translateY(-100vh) rotate(0deg); opacity: 1; }
-      100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
-    }
-    /* Confetti */
-    .confetti {
-      position: absolute;
-      width: 10px;
-      height: 10px;
-      background: #d946ef;
-      animation: confettiFall 4s linear infinite;
-      z-index: 3;
-    }
-    @keyframes confettiFall {
-      0% { transform: translateY(-100vh) rotate(0deg); opacity: 1; }
-      100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
-    }
-    /* Stars background */
-    .stars {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: transparent url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxjaXJjbGUgY3g9IjIwJSIgY3k9IjIwJSIgcj0iMiIgZmlsbD0id2hpdGUiIG9wYWNpdHk9IjAuOCIvPjxjaXJjbGUgY3g9IjYwJSIgY3k9IjEwJSIgcj0iMSIgZmlsbD0id2hpdGUiIG9wYWNpdHk9IjAuNiIvPjxjaXJjbGUgY3g9IjQwJSIgY3k9IjgwJSIgcj0iMS41IiBmaWxsPSJ3aGl0ZSIgb3BhY2l0eT0iMC43Ii8+PGNpcmNsZSBjeD0iODAlIiBjeT0iNTAlIiByPSIyIiBmaWxsPSJ3aGl0ZSIgb3BhY2l0eT0iMC45Ii8+PGNpcmNsZSBjeD0iMTAlIiBjeT0iNzAlIiByPSIxIiBmaWxsPSJ3aGl0ZSIgb3BhY2l0eT0iMC41Ii8+PGNpcmNsZSBjeD0iOTAlIiBjeT0iMjAlIiByPSIxLjUiIGZpbGw9IndoaXRlIiBvcGFjaXR5PSIwLjciLz48Y2lyY2xlIGN4PSI1MCUiIGN5PSI2MCUiIHI9IjEiIGZpbGw9IndoaXRlIiBvcGFjaXR5PSIwLjgiLz48L3N2Zz4=') repeat;
-      animation: twinkle 4s infinite alternate;
       pointer-events: none;
-      z-index: 0;
+      animation: fallHeart linear infinite;
+      z-index: 5;
+      text-shadow: 0 0 15px rgba(217,70,239,0.8);
     }
-    @keyframes twinkle {
-      0% { opacity: 0.5; }
-      100% { opacity: 1; }
+    @keyframes fallHeart {
+      0%   { transform: translateY(-10vh) translateX(0) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(110vh) translateX(30vw) rotate(1080deg); opacity: 0; }
+    }
+    /* Extra sparkle hearts */
+    .sparkle {
+      position: absolute;
+      font-size: 1.8rem;
+      color: #e9d5ff;
+      animation: sparkleFall 7s linear infinite;
+      z-index: 5;
+    }
+    @keyframes sparkleFall {
+      0%   { transform: translateY(-5vh) rotate(0deg) scale(1); opacity: 0.9; }
+      100% { transform: translateY(105vh) rotate(720deg) scale(0.5); opacity: 0; }
+    }
+    /* Cute purple teddy accent */
+    .teddy-accent {
+      position: absolute;
+      bottom: 10%;
+      left: 5%;
+      width: 180px;
+      opacity: 0.85;
+      animation: teddySway 6s ease-in-out infinite alternate;
+      filter: drop-shadow(10px 15px 20px rgba(76,29,149,0.7));
+    }
+    @keyframes teddySway {
+      from { transform: rotate(-8deg) translateX(-10px); }
+      to   { transform: rotate(8deg) translateX(10px); }
     }
   </style>
 </head>
 <body>
-  <div class="stars"></div>
 
-  <div class="envelope" id="envelope">
-    <div class="front">Pentru Alexia 💜 Apasă să deschizi</div>
-  </div>
+  <div class="container">
+    <h1 class="title">Pentru Alexia ❤️</h1>
+    <div class="subtitle">cu tot dragul din suflet, Florin</div>
 
-  <div class="card">
-    <h1 class="title">Pentru Alexia 💜</h1>
+    <div class="card">
+      <p>Helo draga mea Alexia</p>
+      <p>Sunt eu Florin si am facut acest site special pentru tine</p>
+      <p>Voiam sa iti spun ca in ultima perioada de cand am inceput sa vorbim chiar chiar chiar imi faci viata mai buna zilnic</p>
+      <p>Parca doar cand stiu ca stau seara cu tine in apel totul devine mult mai frumos</p>
+      <p>Apreciez enorm ca stai cu mine in fiecare seara imi asculti problemele si simt ca chiar iti pasa</p>
+      <p>Eu tin extrem de mult la tine si de fiecare data iti ascult povestile tale cu cel mai mare entuziasm posibil</p>
+      <p>Sunt atat de fericit cand te ascult incat nici nu pot explica</p>
+      <p>Mereu imi faci seara mai frumoasa si nu conteaza despre ce vorbim sau ce facem</p>
+      <p>Doar faptul ca esti acolo cu mine imi schimba complet starea</p>
+      <p>Stiu ca esti intr o situatie ciudata cu Strambu si te gandesti si la Armyn</p>
+      <p>Dar sincer parca in ultima perioada am vazut cat de draguta esti cu mine si cu toata lumea</p>
+      <p>As vrea sa ne apropiem cat mai mult daca iti doresti si tu</p>
+      <p>De aceea vreau sa iti adresez o intrebare extrem de importanta pentru mine</p>
+      <p>Daca nu vrei este complet ok te inteleg perfect si nu voi fi trist</p>
+      <p>Din ce mi ai spus pe 14 februarie nu ai nimic planificat</p>
+      <p>Asa ca voiam sa te intreb daca ai vrea sa petrecem ziua aceea impreuna</p>
+      <p>Sa facem lucruri dragute poate sa iesim prin mall sau oriunde ne simtim bine</p>
+      <p>Cel mai important pentru mine este daca TU iti doresti</p>
+      <p>Iti multumesc enorm ca ai fost langa mine si ca ai insemnat atat de mult pentru mine</p>
 
-    <p>Helo draga mea Alexia</p>
-    <p>Sunt eu Florin si am facut acest site special pentru tine</p>
-    <p>Voiam sa iti spun ca in ultima perioada de cand am inceput sa vorbim chiar chiar chiar imi faci viata mai buna zilnic</p>
-    <p>Parca doar cand stiu ca stau seara cu tine in apel totul devine mult mai frumos</p>
-    <p>Apreciez enorm ca stai cu mine in fiecare seara imi asculti problemele si simt ca chiar iti pasa</p>
-    <p>Eu tin extrem de mult la tine si de fiecare data iti ascult povestile tale cu cel mai mare entuziasm posibil</p>
-    <p>Sunt atat de fericit cand te ascult incat nici nu pot explica</p>
-    <p>Mereu imi faci seara mai frumoasa si nu conteaza despre ce vorbim sau ce facem</p>
-    <p>Doar faptul ca esti acolo cu mine imi schimba complet starea</p>
-    <p>Stiu ca esti intr o situatie ciudata cu Strambu si te gandesti si la Armyn</p>
-    <p>Dar sincer parca in ultima perioada am vazut cat de draguta esti cu mine si cu toata lumea</p>
-    <p>As vrea sa ne apropiem cat mai mult daca iti doresti si tu</p>
-    <p>De aceea vreau sa iti adresez o intrebare extrem de importanta pentru mine</p>
-    <p>Daca nu vrei este complet ok te inteleg perfect si nu voi fi trist</p>
-    <p>Din ce mi ai spus pe 14 februarie nu ai nimic planificat</p>
-    <p>Asa ca voiam sa te intreb daca ai vrea sa petrecem ziua aceea impreuna</p>
-    <p>Sa facem lucruri dragute poate sa iesim prin mall sau oriunde ne simtim bine</p>
-    <p>Cel mai important pentru mine este daca TU iti doresti</p>
-    <p>Iti multumesc enorm ca ai fost langa mine si ca ai insemnat atat de mult pentru mine</p>
+      <div class="big">Vrei sa fii valentina mea 💜</div>
 
-    <div class="big">Vrei sa fii valentina mea 💜</div>
-
-    <div class="buttons">
-      <button id="yes">DA 💜</button>
-      <button id="no">NU</button>
-    </div>
-
-    <div id="final"></div>
-  </div>
-
-  <!-- Teddy Bear -->
-  <div class="teddy">
-    <div class="head">
-      <div class="ear1"><div class="ear-m1"></div></div>
-      <div class="ear2"><div class="ear-m2"></div></div>
-      <div class="eye1"><div class="w"></div></div>
-      <div class="eye2"><div class="w"></div></div>
-      <div class="mouth-nose">
-        <div class="nose"></div>
-        <div class="mouth"></div>
+      <div class="buttons">
+        <button id="yes">DA 💜</button>
+        <button id="no">NU</button>
       </div>
-    </div>
-    <div class="body">
-      <div class="stomach"></div>
-      <div class="hand1"><div class="h"></div></div>
-      <div class="hand2"><div class="h"></div></div>
-      <div class="leg1"><div class="l"></div></div>
-      <div class="leg2"><div class="l"></div></div>
+
+      <div id="final"></div>
     </div>
   </div>
 
+  <!-- Falling hearts & sparkles -->
   <script>
-    // Open envelope
-    document.getElementById('envelope').addEventListener('click', () => {
-      envelope.classList.add('open');
-    });
+    function createHeart() {
+      const heart = document.createElement('div');
+      heart.className = Math.random() > 0.4 ? 'heart' : 'sparkle';
+      heart.innerHTML = heart.className === 'heart' ? '💜' : '✨';
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.animationDuration = (Math.random() * 6 + 8) + 's';
+      heart.style.animationDelay = Math.random() * 5 + 's';
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 14000);
+    }
+    setInterval(createHeart, 250);
 
-    // Reveal paragraphs on scroll
+    // Reveal text progressively
     const paragraphs = document.querySelectorAll('.card p');
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
@@ -317,52 +253,42 @@
           entry.target.classList.add('visible');
         }
       });
-    }, { threshold: 0.1 });
+    }, { threshold: 0.15 });
     paragraphs.forEach(p => observer.observe(p));
 
-    // Hearts
-    function createHeart() {
-      const heart = document.createElement('div');
-      heart.className = 'heart';
-      heart.innerHTML = '💜';
-      heart.style.left = Math.random() * 100 + 'vw';
-      heart.style.animationDuration = Math.random() * 4 + 4 + 's';
-      document.body.appendChild(heart);
-      setTimeout(() => heart.remove(), 8000);
-    }
-    setInterval(createHeart, 200);
-
-    // Confetti on yes
-    function createConfetti() {
-      const confetti = document.createElement('div');
-      confetti.className = 'confetti';
-      confetti.style.left = Math.random() * 100 + 'vw';
-      confetti.style.background = ['#d946ef', '#a855f7', '#c084fc'][Math.floor(Math.random() * 3)];
-      confetti.style.animationDuration = Math.random() * 3 + 3 + 's';
-      document.body.appendChild(confetti);
-      setTimeout(() => confetti.remove(), 5000);
-    }
-
+    // Button logic
     let scale = 1;
     const noBtn = document.getElementById('no');
     const yesBtn = document.getElementById('yes');
     const final = document.getElementById('final');
 
     noBtn.onclick = () => {
-      scale += 0.3;
+      scale += 0.32;
       yesBtn.style.transform = `scale(${scale})`;
-      noBtn.style.transform = `scale(${1 / scale})`;
-      if (scale > 2.5) {
-        noBtn.style.display = 'none';
+      noBtn.style.transform = `scale(${Math.max(0.6, 1 / scale)})`;
+      if (scale > 3) {
+        noBtn.style.opacity = '0';
+        noBtn.style.pointerEvents = 'none';
       }
     };
 
     yesBtn.onclick = () => {
-      final.innerHTML = 'Daca chiar ai ales da vreau sa iti spun ca probabil m ai facut cel mai fericit baiat din univers si din lumea asta<br><br>Promit sa nu te dezamagesc<br><br>Stiu ca poate nu sunt tipul tau dar cred ca oricine merita macar o sansa nu<br><br>❤️';
+      final.innerHTML = 
+        `Daca chiar ai ales da... probabil m-ai facut cel mai fericit baiat din univers si din lumea asta 💜<br><br>` +
+        `Promit sa nu te dezamagesc niciodata.<br>` +
+        `Stiu ca poate nu sunt tipul tau clasic, dar cred ca oricine merita macar o sansa, nu-i asa?<br><br>` +
+        `Te pup cu tot dragul si abia astept sa te vad zambind langa mine. 🌸❤️`;
       final.classList.add('visible');
       noBtn.style.display = 'none';
-      setInterval(createConfetti, 50);
+      // Extra celebration hearts
+      for (let i = 0; i < 40; i++) {
+        setTimeout(createHeart, i * 60);
+      }
     };
   </script>
+
+  <!-- Cute teddy bear accent image (you can replace src with your own if wanted) -->
+  <img class="teddy-accent" src="https://i.pinimg.com/originals/3d/3e/9f/3d3e9f8b8e8f8e8f8e8f8e8f8e8f8e8f.png" alt="Ursuleț mov drăguț" onerror="this.style.display='none'">
+
 </body>
 </html>
